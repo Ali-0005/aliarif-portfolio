@@ -1,14 +1,30 @@
 import { FaAws, FaPython } from 'react-icons/fa'
-import { SiDjango, SiOpenai, SiPostgresql } from 'react-icons/si'
-import { FiArrowRight, FiDownload, FiMessageCircle } from 'react-icons/fi'
-import { HiOutlineSparkles } from 'react-icons/hi2'
+import {
+  SiCelery,
+  SiDjango,
+  SiDocker,
+  SiOpenai,
+  SiPostgresql,
+  SiReact,
+  SiRedis,
+} from 'react-icons/si'
+import {
+  FiArrowRight,
+  FiChevronRight,
+  FiCode,
+  FiDownload,
+  FiGlobe,
+  FiMessageCircle,
+  FiUser,
+} from 'react-icons/fi'
+import { HiOutlineRocketLaunch, HiOutlineSparkles } from 'react-icons/hi2'
 import heroImg from '../../../assets/hero.png'
 
 const stats = [
-  { value: '5+', label: 'Years Experience' },
-  { value: '20+', label: 'Projects Delivered' },
-  { value: 'AI', label: 'Systems Engineer' },
-  { value: 'Remote', label: 'Opportunities' },
+  { value: '5+', label: 'Years Experience', icon: FiUser },
+  { value: '20+', label: 'Projects Delivered', icon: HiOutlineRocketLaunch },
+  { value: 'AI Systems', label: 'Engineer', icon: FiCode },
+  { value: 'Available for', label: 'Remote Opportunities', icon: FiGlobe },
 ]
 
 const techCards = [
@@ -17,6 +33,19 @@ const techCards = [
   { name: 'PostgreSQL', icon: SiPostgresql, className: 'left-0 top-44 -translate-x-10' },
   { name: 'OpenAI', icon: SiOpenai, className: 'right-0 top-56 translate-x-10' },
   { name: 'AWS', icon: FaAws, className: 'right-6 bottom-32 translate-x-10' },
+]
+
+const trustedTechnologies = [
+  { name: 'Python', icon: FaPython, className: 'text-yellow-300' },
+  { name: 'django', icon: SiDjango, className: 'text-white' },
+  { name: 'DRF', className: 'text-red-500' },
+  { name: 'PostgreSQL', icon: SiPostgresql, className: 'text-sky-300' },
+  { name: 'PostGIS', icon: SiPostgresql, className: 'text-sky-300' },
+  { name: 'Redis', icon: SiRedis, className: 'text-red-500' },
+  { name: 'Celery', icon: SiCelery, className: 'text-lime-400' },
+  { name: 'AWS', icon: FaAws, className: 'text-orange-300' },
+  { name: 'Docker', icon: SiDocker, className: 'text-sky-400' },
+  { name: 'React', icon: SiReact, className: 'text-cyan-400' },
 ]
 
 function HeroSection() {
@@ -68,7 +97,7 @@ function HeroSection() {
               href="#contact"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
-              Let’s Talk
+              Let's Talk
               <FiMessageCircle />
             </a>
 
@@ -83,14 +112,21 @@ function HeroSection() {
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-4">
-            {stats.map((item) => (
-              <div key={item.label}>
-                <p className="text-xl font-bold text-white">{item.value}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-400">
-                  {item.label}
-                </p>
-              </div>
-            ))}
+            {stats.map((item) => {
+              const Icon = item.icon
+
+              return (
+                <div key={item.label} className="flex min-w-0 items-center gap-3">
+                  <Icon className="shrink-0 text-2xl text-blue-400" />
+                  <div>
+                    <p className="text-xl font-bold text-white">{item.value}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">
+                      {item.label}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -138,14 +174,44 @@ function HeroSection() {
                   <p className="text-[11px] text-slate-400">Projects Delivered</p>
                 </div>
                 <div>
-                  <p className="text-lg font-bold text-blue-400">AI</p>
+                  <FiCode className="mx-auto text-2xl text-blue-400" />
                   <p className="text-[11px] text-slate-400">
-                    Backend & AI Engineer
+                    Backend & AI Systems Engineer
                   </p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto mt-20 max-w-7xl rounded-2xl border border-white/10 bg-[#0b1424]/70 px-5 py-4 shadow-2xl shadow-black/30 backdrop-blur">
+        <p className="mb-4 text-center text-xs font-bold uppercase tracking-wide text-slate-300">
+          Trusted Technologies
+        </p>
+
+        <div className="flex items-center gap-7 overflow-x-auto pb-1">
+          {trustedTechnologies.map((tech) => {
+            const Icon = tech.icon
+
+            return (
+              <div
+                key={tech.name}
+                className="flex shrink-0 items-center gap-2 text-sm font-semibold text-white"
+              >
+                {Icon ? (
+                  <Icon className={`text-2xl ${tech.className}`} />
+                ) : (
+                  <span className={`text-lg font-black ${tech.className}`}>
+                    {tech.name}
+                  </span>
+                )}
+                {Icon && <span>{tech.name}</span>}
+              </div>
+            )
+          })}
+
+          <FiChevronRight className="shrink-0 text-xl text-slate-400" />
         </div>
       </div>
     </section>
