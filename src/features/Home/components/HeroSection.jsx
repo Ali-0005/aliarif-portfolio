@@ -1,16 +1,11 @@
 import { FaAws, FaPython } from 'react-icons/fa'
 import {
-  SiCelery,
   SiDjango,
-  SiDocker,
   SiOpenai,
   SiPostgresql,
-  SiReact,
-  SiRedis,
 } from 'react-icons/si'
 import {
   FiArrowRight,
-  FiChevronRight,
   FiCode,
   FiDownload,
   FiGlobe,
@@ -33,19 +28,6 @@ const techCards = [
   { name: 'PostgreSQL', icon: SiPostgresql, className: 'left-0 top-44 -translate-x-10' },
   { name: 'OpenAI', icon: SiOpenai, className: 'right-0 top-56 translate-x-10' },
   { name: 'AWS', icon: FaAws, className: 'right-6 bottom-32 translate-x-10' },
-]
-
-const trustedTechnologies = [
-  { name: 'Python', icon: FaPython, className: 'text-yellow-300' },
-  { name: 'django', icon: SiDjango, className: 'text-white' },
-  { name: 'DRF', className: 'text-red-500' },
-  { name: 'PostgreSQL', icon: SiPostgresql, className: 'text-sky-300' },
-  { name: 'PostGIS', icon: SiPostgresql, className: 'text-sky-300' },
-  { name: 'Redis', icon: SiRedis, className: 'text-red-500' },
-  { name: 'Celery', icon: SiCelery, className: 'text-lime-400' },
-  { name: 'AWS', icon: FaAws, className: 'text-orange-300' },
-  { name: 'Docker', icon: SiDocker, className: 'text-sky-400' },
-  { name: 'React', icon: SiReact, className: 'text-cyan-400' },
 ]
 
 function HeroSection() {
@@ -185,35 +167,6 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="relative mx-auto mt-20 max-w-7xl rounded-2xl border border-white/10 bg-[#0b1424]/70 px-5 py-4 shadow-2xl shadow-black/30 backdrop-blur">
-        <p className="mb-4 text-center text-xs font-bold uppercase tracking-wide text-slate-300">
-          Trusted Technologies
-        </p>
-
-        <div className="flex items-center gap-7 overflow-x-auto pb-1">
-          {trustedTechnologies.map((tech) => {
-            const Icon = tech.icon
-
-            return (
-              <div
-                key={tech.name}
-                className="flex shrink-0 items-center gap-2 text-sm font-semibold text-white"
-              >
-                {Icon ? (
-                  <Icon className={`text-2xl ${tech.className}`} />
-                ) : (
-                  <span className={`text-lg font-black ${tech.className}`}>
-                    {tech.name}
-                  </span>
-                )}
-                {Icon && <span>{tech.name}</span>}
-              </div>
-            )
-          })}
-
-          <FiChevronRight className="shrink-0 text-xl text-slate-400" />
-        </div>
-      </div>
     </section>
   )
 }
