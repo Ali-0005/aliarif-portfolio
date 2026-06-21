@@ -47,6 +47,7 @@ const projects = [
     result: 'Scalable RAG pipeline with Pinecone',
     icon: FiShare2,
     accent: 'from-slate-100 to-cyan-100',
+    href: '/projects/rag-ai-chatbot',
   },
   {
     title: 'Billing & BI Platform',

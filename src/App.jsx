@@ -3,6 +3,7 @@ import Home from './features/Home'
 import RealEstateProject from './features/Projects'
 import SocifiyProject from './features/Projects/components/SocifiyProject'
 import OmnichannelProject from './features/Projects/components/OmnichannelProject'
+import RagProject from './features/Projects/components/RagProject'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/projects/real-estate" element={<RealEstateProject />} />
         <Route path="/projects/socifiy" element={<SocifiyProject />} />
         <Route path="/projects/omnichannel-ai-chatbot" element={<OmnichannelProject />} />
+        <Route path="/projects/rag-ai-chatbot" element={<RagProject />} />
       </Routes>
     </BrowserRouter>
   )
