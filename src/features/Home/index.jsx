@@ -5,6 +5,7 @@ import AboutSection from './components/AboutSection'
 import ExpertiseSection from './components/ExpertiseSection'
 import TechStackSection from './components/TechStackSection'
 import ProjectsSection from './components/ProjectsSection'
+import ServicesStrip from './components/ServicesStrip'
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       <ExpertiseSection />
       <TechStackSection />
       <ProjectsSection />
+      <ServicesStrip />
     </main>
   )
 }
