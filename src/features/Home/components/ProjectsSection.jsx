@@ -37,6 +37,7 @@ const projects = [
     result: 'Real-time routing with high reliability',
     icon: FiMessageSquare,
     accent: 'from-blue-50 to-indigo-100',
+    href: '/projects/omnichannel-ai-chatbot',
   },
   {
     title: 'RAG-Based AI Chatbot Engine',
