@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FiCalendar, FiMenu, FiX } from 'react-icons/fi'
+import logo from '../../../assets/header_footer_logo.png'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -22,12 +23,16 @@ function Navbar() {
         className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
       >
         <a href="#home" className="flex items-center gap-3" onClick={closeMenu}>
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
-            <span className="text-3xl font-black leading-none text-blue-500">A</span>
-          </div>
+          <img
+            src={logo}
+            alt="Ali Arif logo"
+            className="h-11 w-11 rounded-xl object-cover"
+          />
 
           <div className="leading-tight">
-            <p className="text-base font-bold tracking-wide text-white">ALI ARIF</p>
+            <p className="text-base font-bold tracking-wide text-white">
+              ALI <span className="text-blue-400">ARIF</span>
+            </p>
             <p className="text-xs font-medium text-slate-400">
               Backend & AI Systems Engineer
             </p>

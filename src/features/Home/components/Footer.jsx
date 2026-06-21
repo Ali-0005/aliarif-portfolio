@@ -1,22 +1,30 @@
 import { FiAward, FiGithub, FiMail, FiMapPin } from 'react-icons/fi'
 import { FaLinkedinIn } from 'react-icons/fa'
 import { profile } from '../../../data/profile'
+import logo from '../../../assets/header_footer_logo.png'
 
 function Footer() {
   return (
     <footer className="border-t border-blue-400/20 bg-[#020817] px-5 text-white lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-6 py-6 md:grid-cols-[1fr_3fr] md:items-center">
-          <div>
-            <p className="text-2xl font-extrabold uppercase tracking-wide">
-              {profile.firstName}{' '}
-              <span className="text-blue-400">{profile.lastName}</span>
-            </p>
-            <p className="mt-1 text-sm text-slate-400">{profile.title}</p>
-            <p className="mt-2 flex items-center gap-2 text-sm text-slate-400">
-              <FiMapPin className="text-blue-400" />
-              {profile.location}
-            </p>
+          <div className="flex items-start gap-3">
+            <img
+              src={logo}
+              alt="Ali Arif logo"
+              className="h-14 w-14 rounded-xl object-cover"
+            />
+            <div>
+              <p className="text-2xl font-extrabold uppercase tracking-wide">
+                {profile.firstName}{' '}
+                <span className="text-blue-400">{profile.lastName}</span>
+              </p>
+              <p className="mt-1 text-sm text-slate-400">{profile.title}</p>
+              <p className="mt-2 flex items-center gap-2 text-sm text-slate-400">
+                <FiMapPin className="text-blue-400" />
+                {profile.location}
+              </p>
+            </div>
           </div>
 
           <div className="grid gap-4 border-blue-400/15 md:grid-cols-4 md:border-l">

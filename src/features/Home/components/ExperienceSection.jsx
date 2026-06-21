@@ -1,8 +1,12 @@
 import { FiBriefcase, FiCalendar, FiGlobe, FiMonitor } from 'react-icons/fi'
+import governmentLogo from '../../../assets/Government_of_pak.png'
+import icmaLogo from '../../../assets/icma_logo.png'
+import selfEmployedLogo from '../../../assets/self_employee.jfif'
 
 const experience = [
   {
     company: 'Highline Residential',
+    url: 'https://www.hlres.com/',
     location: 'USA',
     role: 'Backend & AI Systems Engineer',
     period: 'Feb 2026 – Present',
@@ -12,30 +16,31 @@ const experience = [
   },
   {
     company: 'Self Employed',
-    location: 'SmartFor / Remote',
+    location: 'Hybrid / Remote',
     role: 'Software Engineer (Freelance / Contract)',
     period: '2025 – Present',
-    logo: 'SE',
+    logo: selfEmployedLogo,
     icon: FiGlobe,
-    logoStyle: 'bg-blue-600 text-white',
+    logoStyle: 'bg-white',
   },
   {
-    company: 'Government Organization',
+    company: 'Government of Pakistan',
     location: 'Pakistan',
     role: 'Software Engineer',
     period: 'Jan 2022 – Jun 2025',
-    logo: 'GO',
+    logo: governmentLogo,
     icon: FiMonitor,
-    logoStyle: 'bg-emerald-950 text-emerald-300',
+    logoStyle: 'bg-white',
   },
   {
     company: 'ICMA Digital Academy',
+    url: 'https://www.icmadigital.org/',
     location: 'UK',
     role: 'AI Instructor (Generative AI)',
-    period: '2025 – Present',
-    logo: 'ICMA',
+    period: 'Dec 2025 – Present',
+    logo: icmaLogo,
     icon: FiCalendar,
-    logoStyle: 'bg-white text-slate-700',
+    logoStyle: 'bg-white',
   },
 ]
 
@@ -66,12 +71,33 @@ function ExperienceSection() {
                   <div
                     className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-xl border border-white/10 text-lg font-bold shadow-lg ${item.logoStyle}`}
                   >
-                    {item.logo}
+                    {typeof item.logo === 'string' &&
+                    !item.logo.includes('/') &&
+                    !item.logo.includes('.') ? (
+                      item.logo
+                    ) : (
+                      <img
+                        src={item.logo}
+                        alt={`${item.company} logo`}
+                        className="h-full w-full rounded-xl object-contain p-1"
+                      />
+                    )}
                   </div>
 
                   <div className="min-w-0">
                     <h3 className="text-lg font-bold text-white">
-                      {item.company}
+                      {item.url ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="transition hover:text-blue-400"
+                        >
+                          {item.company}
+                        </a>
+                      ) : (
+                        item.company
+                      )}
                     </h3>
                     <p className="mt-1 text-sm text-slate-400">
                       ({item.location})
