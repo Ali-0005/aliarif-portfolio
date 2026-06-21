@@ -3,6 +3,7 @@ import {
   SiDjango,
   SiOpenai,
   SiPostgresql,
+  SiReact,
 } from 'react-icons/si'
 import {
   FiArrowRight,
@@ -16,10 +17,10 @@ import { HiOutlineRocketLaunch, HiOutlineSparkles } from 'react-icons/hi2'
 import heroImg from '../../../assets/hero.png'
 
 const stats = [
-  { value: '5+', label: 'Years Experience', icon: FiUser },
-  { value: '20+', label: 'Projects Delivered', icon: HiOutlineRocketLaunch },
-  { value: 'AI Systems', label: 'Engineer', icon: FiCode },
-  { value: 'Available for', label: 'Remote Opportunities', icon: FiGlobe },
+  // { value: '5+', label: 'Years Experience', icon: FiUser },
+  // { value: '20+', label: 'Projects Delivered', icon: HiOutlineRocketLaunch },
+  // { value: 'Backend & AI Systems', label: 'Engineer', icon: FiCode },
+  // { value: 'Available for', label: 'Hybrid/ Remote Opportunities', icon: FiGlobe },
 ]
 
 const techCards = [
@@ -28,6 +29,7 @@ const techCards = [
   { name: 'PostgreSQL', icon: SiPostgresql, className: 'left-0 top-44 -translate-x-10' },
   { name: 'OpenAI', icon: SiOpenai, className: 'right-0 top-56 translate-x-10' },
   { name: 'AWS', icon: FaAws, className: 'right-6 bottom-32 translate-x-10' },
+  { name: 'React', icon: SiReact, className: 'left-6 bottom-32 -translate-x-10' },
 ]
 
 function HeroSection() {

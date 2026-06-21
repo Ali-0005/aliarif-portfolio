@@ -9,7 +9,7 @@ import {
 
 const projects = [
   {
-    title: 'Real Estate & Community Discovery Platform',
+    title: 'Real Estate & Community Discovery Platform (Casamere)',
     type: 'Flagship Project',
     description:
       'MLS-backed platform with AI-powered media workflows and geospatial search.',
@@ -18,7 +18,7 @@ const projects = [
     accent: 'from-sky-100 to-blue-200',
   },
   {
-    title: 'SOCIIFY – Social Media Management SaaS',
+    title: 'SOCIFIY – Social Media Management SaaS',
     type: 'SaaS Project',
     description:
       'Social media management SaaS for scheduling, publishing, and team collaboration.',
