@@ -4,6 +4,7 @@ import RealEstateProject from './features/Projects'
 import SocifiyProject from './features/Projects/components/SocifiyProject'
 import OmnichannelProject from './features/Projects/components/OmnichannelProject'
 import RagProject from './features/Projects/components/RagProject'
+import BillingProject from './features/Projects/components/BillingProject'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/projects/socifiy" element={<SocifiyProject />} />
         <Route path="/projects/omnichannel-ai-chatbot" element={<OmnichannelProject />} />
         <Route path="/projects/rag-ai-chatbot" element={<RagProject />} />
+        <Route path="/projects/billing-bi" element={<BillingProject />} />
       </Routes>
     </BrowserRouter>
   )

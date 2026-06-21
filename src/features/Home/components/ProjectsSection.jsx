@@ -57,6 +57,7 @@ const projects = [
     result: 'Stripe integration with automated workflows',
     icon: FiBarChart2,
     accent: 'from-indigo-50 to-violet-100',
+    href: '/projects/billing-bi',
   },
 ]
 

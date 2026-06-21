@@ -2,7 +2,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 3rem;
   background: #020817;
+}
+
+[id] {
+  scroll-margin-top: 3rem;
 }
 
 body {
