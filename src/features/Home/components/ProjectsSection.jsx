@@ -6,6 +6,7 @@ import {
   FiShare2,
   FiUsers,
 } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 const projects = [
   {
@@ -16,6 +17,7 @@ const projects = [
     result: '88% Search Performance Improvement',
     icon: FiMapPin,
     accent: 'from-sky-100 to-blue-200',
+    href: '/projects/real-estate',
   },
   {
     title: 'SOCIFIY – Social Media Management SaaS',
@@ -107,13 +109,23 @@ function ProjectsSection() {
                       {project.result}
                     </p>
 
-                    <a
+                    {project.href ? (
+                      <Link
+                        to={project.href}
+                        className="mt-auto inline-flex items-center gap-2 border-t border-white/5 pt-5 text-sm font-semibold text-blue-400"
+                      >
+                        Case Study
+                        <FiArrowRight />
+                      </Link>
+                    ) : (
+                      <a
                       href="#contact"
                       className="mt-auto inline-flex items-center gap-2 border-t border-white/5 pt-5 text-sm font-semibold text-blue-400"
                     >
                       Case Study
                       <FiArrowRight />
                     </a>
+                    )}
                   </div>
                 </div>
               </article>
