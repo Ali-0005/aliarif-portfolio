@@ -8,37 +8,38 @@ import {
   FiArrowUpRight,
 } from 'react-icons/fi'
 import { FaLinkedinIn } from 'react-icons/fa'
+import { profile } from '../../../data/profile'
 
 const profileItems = [
   {
     label: 'Name',
-    value: 'Ali Arif',
+    value: profile.name,
     icon: FiUser,
   },
   {
     label: 'Email',
-    value: 'aliarif.itu@gmail.com',
+    value: profile.email,
     icon: FiAtSign,
   },
   {
     label: 'Location',
-    value: 'Lahore, Pakistan',
+    value: profile.location,
     icon: FiMapPin,
   },
   {
     label: 'Availability',
-    value: 'Open for Opportunities',
+    value: profile.availability,
     icon: FiGlobe,
     accent: true,
   },
   {
     label: 'LinkedIn',
-    value: 'ali-arif-3a093590',
+    value: profile.linkedin,
     icon: FaLinkedinIn,
   },
   {
     label: 'GitHub',
-    value: 'Ali-0005',
+    value: profile.github,
     icon: FiGithub,
   },
 ]
@@ -61,7 +62,7 @@ function AboutSection() {
 
             <div className="mt-6 space-y-5 text-base leading-8 text-slate-300 sm:text-lg">
               <p>
-                I am Ali Arif, a Backend & AI Systems Engineer with 5+ years of
+                I am {profile.name}, a {profile.title} with 5+ years of
                 experience transforming complex requirements into
                 production-grade digital products.
               </p>

@@ -8,6 +8,8 @@ import ProjectsSection from './components/ProjectsSection'
 import ServicesStrip from './components/ServicesStrip'
 import WhyWorkWithMe from './components/WhyWorkWithMe'
 import ExperienceSection from './components/ExperienceSection'
+import ContactCTA from './components/ContactCTA'
+import Footer from './components/Footer'
 
 function Home() {
   return (
@@ -22,6 +24,8 @@ function Home() {
       <ServicesStrip />
       <WhyWorkWithMe />
       <ExperienceSection />
+      <ContactCTA />
+      <Footer />
     </main>
   )
 }

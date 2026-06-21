@@ -1,0 +1,15 @@
+export const profile = {
+  name: 'Ali Arif',
+  firstName: 'Ali',
+  lastName: 'Arif',
+  title: 'Backend & AI Systems Engineer',
+  email: 'aliarif.itu@gmail.com',
+  location: 'Lahore, Pakistan',
+  availability: 'Open for Opportunities',
+  linkedin: 'ali-arif-3a093590',
+  linkedinUrl: 'https://www.linkedin.com/in/ali-arif-3a093590',
+  github: 'Ali-0005',
+  githubUrl: 'https://github.com/Ali-0005',
+  credly: 'Credly Badges',
+  credlyUrl: 'https://www.credly.com/users/ali-arif.1c7c9700/badges/credly',
+}
