@@ -1,7 +1,7 @@
 import { FiAward, FiGithub, FiMail, FiMapPin } from 'react-icons/fi'
 import { FaLinkedinIn } from 'react-icons/fa'
 import { profile } from '../../../data/profile'
-import logo from '../../../assets/header_footer_logo.png'
+import logo from '../../../assets/removebg-preview.png'
 
 function Footer() {
   return (

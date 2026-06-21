@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { FiCalendar, FiMenu, FiX } from 'react-icons/fi'
-import logo from '../../../assets/header_footer_logo.png'
+// import logo from '../../../assets/header_footer_logo.png'
+import logo from '../../../assets/removebg-preview.png'
+
 
 const navLinks = [
   { label: 'Home', href: '#home' },
