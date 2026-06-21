@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import TrustedTechnologies from './components/TrustedTechnologies'
+import AboutSection from './components/AboutSection'
 
 function Home() {
   return (
@@ -8,6 +9,7 @@ function Home() {
       <Navbar />
       <HeroSection />
       <TrustedTechnologies />
+      <AboutSection />
     </main>
   )
 }
