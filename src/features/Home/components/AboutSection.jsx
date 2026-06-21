@@ -1,24 +1,21 @@
 import {
   FiArrowRight,
+  FiAward,
   FiAtSign,
   FiGithub,
-  FiGlobe,
   FiMapPin,
-  FiUser,
   FiArrowUpRight,
 } from 'react-icons/fi'
 import { FaLinkedinIn } from 'react-icons/fa'
+import { SiGooglescholar } from 'react-icons/si'
 import { profile } from '../../../data/profile'
 
 const profileItems = [
-  {
-    label: 'Name',
-    value: profile.name,
-    icon: FiUser,
-  },
+
   {
     label: 'Email',
     value: profile.email,
+    url: `mailto:${profile.email}`,
     icon: FiAtSign,
   },
   {
@@ -26,22 +23,35 @@ const profileItems = [
     value: profile.location,
     icon: FiMapPin,
   },
-  {
-    label: 'Availability',
-    value: profile.availability,
-    icon: FiGlobe,
-    accent: true,
-  },
+
   {
     label: 'LinkedIn',
     value: profile.linkedin,
+    url: profile.linkedinUrl,
     icon: FaLinkedinIn,
   },
+
   {
     label: 'GitHub',
     value: profile.github,
+    url: profile.githubUrl,
     icon: FiGithub,
+  }, 
+
+  {
+    label: 'Google Scholar',
+    value: profile.googleScholar,
+    url: profile.googleScholarUrl,
+    icon: SiGooglescholar,
   },
+
+  {
+    label: 'Credly',
+    value: profile.credly,
+    url: profile.credlyUrl,
+    icon: FiAward,
+  }, 
+
 ]
 
 function AboutSection() {
@@ -53,9 +63,9 @@ function AboutSection() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-400">
+            {/* <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-400">
               About Me
-            </p>
+            </p> */}
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
               About Me
             </h2>
@@ -109,9 +119,20 @@ function AboutSection() {
                       <p className="text-sm font-medium text-slate-400">
                         {item.label}
                       </p>
-                      <p className="mt-1 text-base font-semibold text-white">
-                        {item.value}
-                      </p>
+                      {item.url ? (
+                        <a
+                          href={item.url}
+                          target={item.url.startsWith('http') ? '_blank' : undefined}
+                          rel={item.url.startsWith('http') ? 'noreferrer' : undefined}
+                          className="mt-1 block text-base font-semibold text-white transition hover:text-blue-400"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="mt-1 text-base font-semibold text-white">
+                          {item.value}
+                        </p>
+                      )}
                     </div>
                   </div>
                 )

@@ -12,4 +12,6 @@ export const profile = {
   githubUrl: 'https://github.com/Ali-0005',
   credly: 'Credly Badges',
   credlyUrl: 'https://www.credly.com/users/ali-arif.1c7c9700/badges/credly',
+  googleScholar: 'Google Scholar',
+  googleScholarUrl: 'https://scholar.google.com/citations?user=8IBzFzUAAAAJ',
 }
