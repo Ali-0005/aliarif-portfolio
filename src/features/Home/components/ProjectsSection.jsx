@@ -27,6 +27,7 @@ const projects = [
     result: 'High-volume scheduling engine built',
     icon: FiUsers,
     accent: 'from-slate-100 to-blue-100',
+    href: '/projects/socifiy',
   },
   {
     title: 'Omnichannel AI Chatbot Integrations',
