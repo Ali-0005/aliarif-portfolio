@@ -4,6 +4,7 @@ import TrustedTechnologies from './components/TrustedTechnologies'
 import AboutSection from './components/AboutSection'
 import ExpertiseSection from './components/ExpertiseSection'
 import TechStackSection from './components/TechStackSection'
+import ProjectsSection from './components/ProjectsSection'
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <AboutSection />
       <ExpertiseSection />
       <TechStackSection />
+      <ProjectsSection />
     </main>
   )
 }
