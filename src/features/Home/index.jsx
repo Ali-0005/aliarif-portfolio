@@ -6,6 +6,8 @@ import ExpertiseSection from './components/ExpertiseSection'
 import TechStackSection from './components/TechStackSection'
 import ProjectsSection from './components/ProjectsSection'
 import ServicesStrip from './components/ServicesStrip'
+import WhyWorkWithMe from './components/WhyWorkWithMe'
+import ExperienceSection from './components/ExperienceSection'
 
 function Home() {
   return (
@@ -18,6 +20,8 @@ function Home() {
       <TechStackSection />
       <ProjectsSection />
       <ServicesStrip />
+      <WhyWorkWithMe />
+      <ExperienceSection />
     </main>
   )
 }
