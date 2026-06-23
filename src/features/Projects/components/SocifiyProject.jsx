@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   FiArrowLeft, FiBarChart2, FiBriefcase, FiCalendar, FiCheckCircle,
-  FiExternalLink, FiGrid, FiLayers, FiLink, FiLock, FiMaximize2, FiServer, FiTarget, FiUsers, FiX, FiZap,
+  FiExternalLink, FiGrid, FiLayers, FiLink, FiLock, FiMaximize2, FiServer, FiTarget, FiUsers, FiX, FiZap, FiSend,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
@@ -171,6 +171,23 @@ function SocifiyProject() {
                 <div className="mt-5 space-y-5 text-sm">{['Multi-Tenant Ready', 'Automated Publishing', 'Scalable Infrastructure', 'Production Ready'].map((item) => <p key={item} className="flex gap-3"><FiCheckCircle className="mt-1 shrink-0 text-emerald-400" /><b>{item}</b></p>)}</div>
               </div>
             </aside>
+          </div>
+          <div className="mt-12 rounded-xl border border-white/10 bg-gradient-to-r from-blue-600/30 via-[#10245c]/70 to-purple-700/30 p-6 shadow-2xl shadow-blue-950/40">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex gap-5">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-blue-500/20">
+                  <FiSend className="text-4xl text-blue-300" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold">Need a Scalable SaaS or Automation Platform?</h2>
+                  <p className="mt-3 max-w-2xl leading-7 text-slate-300">I help startups and businesses build scalable backend systems, automation workflows, and cloud-native applications.</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link to="/#contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-7 py-4 text-sm font-semibold transition hover:bg-blue-500">Book a Discovery Call</Link>
+                <Link to="/#projects" className="inline-flex items-center justify-center gap-3 rounded-lg border border-white/20 bg-white/5 px-7 py-4 text-sm font-semibold transition hover:bg-white/10">View All Projects <FiArrowLeft className="rotate-180" /></Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

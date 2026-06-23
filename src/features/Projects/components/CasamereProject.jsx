@@ -255,11 +255,12 @@ function CasamereProject() {
                 </div>
               </div>
 
-              <div className={`${cardClass} p-5`}>
-                <p className="font-semibold">Have a similar project?</p>
-                <p className="mt-3 text-sm leading-6 text-slate-400">Let’s build something powerful together.</p>
-                <Link to="/#contact" className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold">
-                  Book a Discovery Call
+              <div className="rounded-xl border border-white/10 bg-gradient-to-br from-blue-600/20 via-[#0b1424]/90 to-purple-700/25 p-7 shadow-2xl shadow-blue-950/40">
+                <p className="text-xl font-bold leading-8">Interested in building something similar?</p>
+                <p className="mt-5 text-base leading-8 text-slate-400">Let’s discuss how I can help you build a scalable solution.</p>
+                <Link to="/#contact" className="mt-7 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-4 text-lg font-bold transition hover:from-blue-500 hover:to-purple-500">
+                  Schedule a Call
+                  <FiArrowLeft className="rotate-180" />
                 </Link>
               </div>
             </aside>
