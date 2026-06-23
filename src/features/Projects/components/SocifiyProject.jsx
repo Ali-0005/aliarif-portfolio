@@ -1,18 +1,20 @@
+import { useState } from 'react'
 import {
   FiArrowLeft, FiBarChart2, FiBriefcase, FiCalendar, FiCheckCircle,
-  FiLayers, FiLock, FiServer, FiTarget, FiUsers, FiZap,
+  FiExternalLink, FiGrid, FiLayers, FiLink, FiLock, FiMaximize2, FiServer, FiTarget, FiUsers, FiX, FiZap,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
+import architectureImage from '../../../assets/socifiy_architecture.png'
 import heroDemo from '../../../assets/socifiy-hero-demo.png'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
 
 const card = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
-const sections = ['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Technologies', 'Results & Impact', 'Outcome']
+const sections = ['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Outcome']
 const projectInfo = [
   { icon: 'briefcase', label: 'Project Type', value: 'SaaS Platform' },
   { icon: 'grid', label: 'Industry', value: 'Social Media / Marketing' },
-  { icon: 'calendar', label: 'Duration', value: 'Jul 2025 - Jan 2026' },
+  { icon: 'calendar', label: 'Duration', value: 'Jul 2025 - Present' },
   { icon: 'users', label: 'Team', value: 'Solo Full-Stack Engineer' },
   { icon: 'cloud', label: 'Deployment', value: 'AWS Cloud Infrastructure' },
 ]
@@ -27,12 +29,12 @@ const features = [
   [FiBarChart2, 'Analytics & Reporting'], [FiLock, 'Secure Integrations'],
 ]
 const contributions = [
-  ['Multi-Tenant SaaS Architecture', 'Designed and implemented a secure multi-tenant architecture with data isolation, organization workspaces, and role-based access control.'],
-  ['Frontend Dashboard', 'Developed responsive React dashboards for content management, scheduling, analytics, and team collaboration.'],
-  ['Authentication & Security', 'Implemented JWT authentication, refresh tokens, Google OAuth, and RBAC for secure user and team access.'],
-  ['Cloud Infrastructure', 'Designed and deployed the entire infrastructure on AWS for scalability, security, and high availability.'],
-  ['Scheduling & Automation Engine', 'Built asynchronous scheduling and automation pipelines using Celery, Redis, and event-driven processing.'],
-  ['Database & Reliability', 'Optimized PostgreSQL architecture, queries, and monitoring systems to ensure production reliability and performance.'],
+  [FiLayers, 'text-emerald-400 bg-emerald-500/10 border-emerald-400/20', 'Multi-Tenant SaaS Architecture', 'Designed and implemented a secure multi-tenant architecture with data isolation, organization workspaces, and role-based access control.'],
+  [FiGrid, 'text-purple-400 bg-purple-500/10 border-purple-400/20', 'Frontend Dashboard', 'Developed responsive React dashboards for content management, scheduling, analytics, and team collaboration.'],
+  [FiLock, 'text-blue-400 bg-blue-500/10 border-blue-400/20', 'Authentication & Security', 'Implemented JWT authentication, refresh tokens, Google OAuth, and RBAC for secure user and team access.'],
+  [FiServer, 'text-sky-400 bg-sky-500/10 border-sky-400/20', 'Cloud Infrastructure', 'Designed and deployed the entire infrastructure on AWS for scalability, security, and high availability.'],
+  [FiCalendar, 'text-amber-400 bg-amber-500/10 border-amber-400/20', 'Scheduling & Automation Engine', 'Built asynchronous scheduling and automation pipelines using Celery, Redis, and event-driven processing.'],
+  [FiBarChart2, 'text-green-400 bg-green-500/10 border-green-400/20', 'Database & Reliability', 'Optimized PostgreSQL architecture, queries, and monitoring systems to ensure production reliability and performance.'],
 ]
 const technologies = {
   Backend: ['Python', 'Django', 'DRF'],
@@ -49,6 +51,8 @@ function Title({ icon: Icon, children }) {
 }
 
 function SocifiyProject() {
+  const [isArchitectureOpen, setIsArchitectureOpen] = useState(false)
+
   return (
     <main className="min-h-screen bg-[#020817] text-white">
       <Navbar />
@@ -59,10 +63,17 @@ function SocifiyProject() {
           <div className="mt-7 grid items-center gap-8 lg:grid-cols-[1fr_1.05fr]">
             <div>
               <span className="rounded-md border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase text-blue-400">Featured Case Study</span>
-              <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">SOCIFIY - Social Media Management SaaS Platform</h1>
+              <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
+                <a href="https://www.socifiy.net" target="_blank" rel="noreferrer" className="transition hover:text-blue-400">
+                  Social Media Management SaaS Platform
+                </a>
+              </h1>
               <p className="mt-5 max-w-2xl leading-8 text-slate-300">A cloud-native social media management platform for businesses, agencies, and teams to automate content publishing, collaborate seamlessly, and manage social operations from a single dashboard.</p>
               <div className="mt-6 flex flex-wrap gap-5 text-sm text-slate-200">
-                <span>Multi-Tenant SaaS</span><span>Workflow Automation</span><span>Content Scheduling</span><span>Team Collaboration</span>
+                <span className="flex items-center gap-2"><FiLayers className="text-blue-400" /> Multi-Tenant SaaS</span>
+                <span className="flex items-center gap-2"><FiZap className="text-blue-400" /> Workflow Automation</span>
+                <span className="flex items-center gap-2"><FiCalendar className="text-blue-400" /> Content Scheduling</span>
+                <span className="flex items-center gap-2"><FiUsers className="text-blue-400" /> Team Collaboration</span>
               </div>
             </div>
             <img src={heroDemo} alt="SOCIFIY dashboard shown on laptop and mobile devices" className="w-full object-contain" />
@@ -89,10 +100,23 @@ function SocifiyProject() {
                 <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">{features.map(([Icon, label]) => <div key={label} className={`${card} p-4 text-center text-xs`}><Icon className="mx-auto mb-3 text-2xl text-blue-400" />{label}</div>)}</div>
               </section>
               <section id="key-contributions" className="py-7"><Title icon={FiZap}>Key Contributions</Title>
-                <div className="mt-5 grid gap-3 md:grid-cols-2">{contributions.map(([name, description]) => <article key={name} className={`${card} p-4`}><h3 className="text-sm font-semibold">{name}</h3><p className="mt-2 text-xs leading-5 text-slate-400">{description}</p></article>)}</div>
+                <div className="mt-5 grid gap-3 md:grid-cols-2">{contributions.map(([Icon, iconClass, name, description]) => <article key={name} className={`${card} flex gap-4 p-4`}><div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border ${iconClass}`}><Icon className="text-xl" /></div><div><h3 className="text-sm font-semibold">{name}</h3><p className="mt-2 text-xs leading-5 text-slate-400">{description}</p></div></article>)}</div>
               </section>
               <section id="architecture" className="py-7"><Title icon={FiServer}>Architecture Overview</Title>
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">{['React Dashboard -> Django REST APIs -> PostgreSQL (RDS)', 'Content Scheduled -> Celery Worker -> Platform Integrations', 'User -> CloudFront -> EC2 / S3 -> RDS / Redis'].map((item) => <div key={item} className={`${card} p-5 text-center text-xs leading-6 text-slate-300`}>{item}</div>)}</div>
+                <button
+                  type="button"
+                  onClick={() => setIsArchitectureOpen(true)}
+                  className={`${card} group relative mt-5 block w-full overflow-hidden p-3 text-left`}
+                >
+                  <img
+                    src={architectureImage}
+                    alt="SOCIFIY architecture overview"
+                    className="w-full rounded-lg object-contain"
+                  />
+                  <span className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-lg border border-blue-400/30 bg-[#020817]/80 text-blue-400 opacity-0 transition group-hover:opacity-100">
+                    <FiMaximize2 />
+                  </span>
+                </button>
               </section>
               <section id="outcome" className="py-7"><Title icon={FiTarget}>Outcome</Title>
                 <p className="mt-4 leading-7 text-slate-300">SOCIFIY is now a production-ready social media management platform trusted by businesses and agencies for their content scheduling, automation, and team collaboration needs. The platform is built for scale, reliability, and performance.</p>
@@ -100,8 +124,45 @@ function SocifiyProject() {
             </div>
 
             <aside className="space-y-5">
-              <div className={`${card} p-5`}><h2 className="text-lg font-bold">Project Snapshot</h2>
-                <div className="mt-5 space-y-4 text-sm text-slate-300"><p>Type<br /><b className="text-white">SaaS Platform</b></p><p>Role<br /><b className="text-white">Full-Stack & AI Automation Engineer</b></p><p>Duration<br /><b className="text-white">Jul 2025 - Jan 2026</b></p></div>
+              <div className={`${card} p-5`}>
+                <h2 className="flex items-center gap-3 text-lg font-bold">
+                  <FiBriefcase className="text-blue-400" />
+                  Project Snapshot
+                </h2>
+                <div className="mt-6 space-y-5 text-sm">
+                  {[
+                    [FiGrid, 'Type', 'SaaS Platform'],
+                    [FiZap, 'Role', 'Full-Stack & AI Automation Engineer'],
+                    [FiCalendar, 'Duration', 'Jul 2025 - Present'],
+                  ].map(([Icon, label, value]) => (
+                    <div key={label} className="flex gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-blue-400/20 bg-blue-500/10">
+                        <Icon className="text-xl text-blue-400" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-slate-500">{label}</p>
+                        <p className="mt-1 font-semibold leading-6 text-slate-100">{value}</p>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="flex gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-blue-400/20 bg-blue-500/10">
+                      <FiLink className="text-xl text-blue-400" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-slate-500">Live Site</p>
+                      <a
+                        href="https://www.socifiy.net"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-1 inline-flex items-center gap-2 font-semibold text-blue-400 hover:text-blue-300"
+                      >
+                        www.socifiy.net
+                        <FiExternalLink />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div id="technologies" className={`${card} p-5`}><h2 className="text-lg font-bold">Technologies Used</h2>
                 <div className="mt-5 space-y-4">{Object.entries(technologies).map(([group, items]) => <div key={group}><p className="mb-2 text-xs font-semibold text-blue-400">{group}</p><div className="flex flex-wrap gap-2">{items.map((item) => <span key={item} className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-xs text-slate-300">{item}</span>)}</div></div>)}</div>
@@ -113,6 +174,25 @@ function SocifiyProject() {
           </div>
         </div>
       </section>
+      {isArchitectureOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4" onClick={() => setIsArchitectureOpen(false)}>
+          <div className="relative max-h-[92vh] w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setIsArchitectureOpen(false)}
+              className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-[#020817]/90 text-white transition hover:text-blue-400"
+              aria-label="Close architecture image"
+            >
+              <FiX />
+            </button>
+            <img
+              src={architectureImage}
+              alt="SOCIFIY architecture overview enlarged"
+              className="max-h-[92vh] w-full rounded-xl border border-white/10 object-contain"
+            />
+          </div>
+        </div>
+      )}
     </main>
   )
 }

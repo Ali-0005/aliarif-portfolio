@@ -36,6 +36,9 @@ const projectInfo = [
   { icon: 'user', label: 'Team', value: 'Cross-functional Team' },
   { icon: 'cloud', label: 'Deployment', value: 'Cloud Infrastructure' },
 ]
+const sidebarSections = projectSections.filter(
+  (section) => !['architecture', 'technologies'].includes(section.id),
+)
 
 const contributionIcons = {
   'Geospatial Search & Discovery': {
@@ -159,7 +162,7 @@ function CasamereProject() {
           <div className="mt-12 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">
             <ProjectLeftSidebar
               cardClass={cardClass}
-              sections={projectSections}
+              sections={sidebarSections}
               info={projectInfo}
               liveWebsite={{ href: 'https://www.casamere.com/', label: 'www.casamere.com' }}
             />
