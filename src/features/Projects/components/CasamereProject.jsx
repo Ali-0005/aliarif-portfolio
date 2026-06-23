@@ -1,18 +1,26 @@
 import {
   FiArrowLeft,
+  FiAperture,
   FiBarChart2,
   FiBriefcase,
   FiCalendar,
   FiCheckCircle,
   FiCode,
   FiDatabase,
+  FiEye,
   FiGrid,
+  FiImage,
   FiMapPin,
+  FiSearch,
   FiServer,
+  FiSettings,
+  FiStar,
   FiTarget,
+  FiTrendingUp,
   FiUser,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import casamereCover from '../../../assets/casamere.png'
 import Navbar from '../../Home/components/Navbar'
 import {
   contributions,
@@ -22,30 +30,54 @@ import {
 
 const cardClass = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
 
+const contributionIcons = {
+  'Geospatial Search & Discovery': {
+    Icon: FiMapPin,
+    className: 'bg-emerald-500/15 text-emerald-400',
+  },
+  'Search Performance Optimization': {
+    Icon: FiTrendingUp,
+    className: 'bg-purple-500/15 text-purple-400',
+  },
+  'AI-Powered Media Pipelines': {
+    Icon: FiImage,
+    className: 'bg-blue-500/15 text-blue-400',
+  },
+  'Amenities Extraction & Normalization': {
+    Icon: FiDatabase,
+    className: 'bg-amber-500/15 text-amber-400',
+  },
+  'Operational Tooling & Automation': {
+    Icon: FiSettings,
+    className: 'bg-blue-500/15 text-blue-400',
+  },
+  'AI Services Integrations': {
+    Icon: FiAperture,
+    className: 'bg-emerald-500/15 text-emerald-400',
+  },
+}
+
+const architectureIcons = {
+  'MLS Listings': { Icon: FiDatabase, className: 'text-blue-400' },
+  'PostgreSQL + PostGIS': { Icon: FiDatabase, className: 'text-emerald-400' },
+  'Search APIs': { Icon: FiSearch, className: 'text-blue-400' },
+  'Map & Community Discovery': { Icon: FiMapPin, className: 'text-emerald-400' },
+  'User Experience': { Icon: FiEye, className: 'text-blue-400' },
+  'Property Data': { Icon: FiDatabase, className: 'text-blue-400' },
+  'Extraction & Validation': { Icon: FiCheckCircle, className: 'text-emerald-400' },
+  'AI Services': { Icon: FiAperture, className: 'text-blue-400' },
+  'Media Generation': { Icon: FiImage, className: 'text-emerald-400' },
+  'Storage & Delivery': { Icon: FiServer, className: 'text-blue-400' },
+}
+
 function DemoThumbnail() {
   return (
     <div className="relative mx-auto aspect-[16/9] w-full max-w-xl rounded-xl border border-white/20 bg-[#101b2b] p-3 shadow-2xl shadow-blue-950/70">
-      <div className="flex h-full overflow-hidden rounded-lg bg-slate-100">
-        <div className="w-2/5 space-y-2 bg-white p-3">
-          <div className="h-3 w-16 rounded bg-blue-500" />
-          {[1, 2, 3].map((item) => (
-            <div key={item} className="flex gap-2 rounded border border-slate-200 p-2">
-              <div className="h-10 w-14 rounded bg-amber-100" />
-              <div className="flex-1 space-y-2">
-                <div className="h-2 rounded bg-slate-300" />
-                <div className="h-2 w-2/3 rounded bg-blue-300" />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="relative flex-1 bg-gradient-to-br from-blue-100 via-slate-200 to-emerald-100">
-          {[['20%', '25%'], ['65%', '20%'], ['45%', '58%'], ['75%', '70%']].map(([left, top]) => (
-            <FiMapPin key={`${left}-${top}`} className="absolute text-xl text-blue-600" style={{ left, top }} />
-          ))}
-          <div className="absolute inset-x-0 top-1/2 h-px rotate-12 bg-white/80" />
-          <div className="absolute inset-y-0 left-1/2 w-px -rotate-12 bg-white/80" />
-        </div>
-      </div>
+      <img
+        src={casamereCover}
+        alt="Casamere real estate platform cover"
+        className="h-full w-full rounded-lg object-cover"
+      />
     </div>
   )
 }
@@ -64,15 +96,19 @@ function ArchitectureCard({ title, items }) {
     <div>
       <p className="mb-3 text-sm font-semibold text-blue-400">{title}</p>
       <div className={`${cardClass} space-y-2 p-3`}>
-        {items.map((item, index) => (
+        {items.map((item, index) => {
+          const { Icon, className } = architectureIcons[item]
+
+          return (
           <div key={item}>
             <div className="flex items-center justify-center gap-3 rounded-lg border border-white/5 bg-white/[0.03] px-3 py-3 text-center text-xs text-slate-200">
-              {index % 2 === 0 ? <FiDatabase className="text-xl text-blue-400" /> : <FiServer className="text-xl text-emerald-400" />}
+              <Icon className={`text-xl ${className}`} />
               {item}
             </div>
             {index < items.length - 1 && <div className="py-1 text-center text-xs text-blue-300">↓</div>}
           </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )
@@ -96,7 +132,9 @@ function CasamereProject() {
                 Featured Case Study
               </span>
               <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
-                Real Estate & Community Discovery Platform (Casamere)
+                <a href="https://www.casamere.com/" target="_blank" rel="noreferrer" className="transition hover:text-blue-400">
+                  CASAMERE – Real Estate & Community Discovery Platform
+                </a>
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
                 A large-scale MLS-backed real estate platform with geospatial search, AI-powered media pipelines, and operational tooling for properties and communities.
@@ -129,10 +167,10 @@ function CasamereProject() {
                 </Link>
               </div>
               <div className={`${cardClass} space-y-5 p-5 text-sm`}>
-                <p className="flex gap-3"><FiBriefcase className="text-blue-400" /> <span><small className="text-slate-400">Project Type</small><br />Enterprise Platform</span></p>
-                <p className="flex gap-3"><FiGrid className="text-blue-400" /> <span><small className="text-slate-400">Industry</small><br />Real Estate</span></p>
-                <p className="flex gap-3"><FiCalendar className="text-blue-400" /> <span><small className="text-slate-400">Duration</small><br />Feb 2026 – Present</span></p>
-                <p className="flex gap-3"><FiUser className="text-blue-400" /> <span><small className="text-slate-400">Team</small><br />Cross-functional Team</span></p>
+                <p className="flex items-start gap-3"><FiBriefcase className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Project Type</small><br />Enterprise Platform</span></p>
+                <p className="flex items-start gap-3"><FiGrid className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Industry</small><br />Real Estate</span></p>
+                <p className="flex items-start gap-3"><FiCalendar className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Duration</small><br />Feb 2026 – Present</span></p>
+                <p className="flex items-start gap-3"><FiUser className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Team</small><br />Cross-functional Team</span></p>
               </div>
             </aside>
 
@@ -160,15 +198,21 @@ function CasamereProject() {
               </section>
 
               <section id="contributions" className="py-7">
-                <SectionTitle icon={FiTarget}>Key Contributions</SectionTitle>
+                <SectionTitle icon={FiStar}>Key Contributions</SectionTitle>
                 <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-                  {contributions.map(([title, description]) => (
-                    <article key={title} className={`${cardClass} p-4`}>
-                      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/15 text-blue-400"><FiCode /></div>
-                      <h3 className="text-sm font-semibold">{title}</h3>
-                      <p className="mt-3 text-xs leading-5 text-slate-400">{description}</p>
-                    </article>
-                  ))}
+                  {contributions.map(([title, description]) => {
+                    const { Icon, className } = contributionIcons[title]
+
+                    return (
+                      <article key={title} className={`${cardClass} p-4`}>
+                        <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-lg ${className}`}>
+                          <Icon className="text-xl" />
+                        </div>
+                        <h3 className="text-sm font-semibold">{title}</h3>
+                        <p className="mt-3 text-xs leading-5 text-slate-400">{description}</p>
+                      </article>
+                    )
+                  })}
                 </div>
               </section>
 
