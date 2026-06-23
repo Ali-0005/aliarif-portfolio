@@ -1,12 +1,10 @@
-import {
-  FiArrowRight,
-  FiBarChart2,
-  FiMapPin,
-  FiMessageSquare,
-  FiShare2,
-  FiUsers,
-} from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import billingThumbnail from '../../../assets/thumbnails/billing_thumbnail.png'
+import casamereThumbnail from '../../../assets/thumbnails/casamere_thumbnail.png'
+import omniChannelThumbnail from '../../../assets/thumbnails/omni_channel_thumbnail.png'
+import ragThumbnail from '../../../assets/thumbnails/rag_thumbnail.png'
+import socifiyThumbnail from '../../../assets/thumbnails/socifiy_thumbnail.png'
 
 const projects = [
   {
@@ -15,8 +13,7 @@ const projects = [
     description:
       'MLS-backed platform with AI-powered media workflows and geospatial search.',
     result: '88% Search Performance Improvement',
-    icon: FiMapPin,
-    accent: 'from-sky-100 to-blue-200',
+    thumbnail: casamereThumbnail,
     href: '/projects/real-estate',
   },
   {
@@ -25,8 +22,7 @@ const projects = [
     description:
       'Social media management SaaS for scheduling, publishing, and team collaboration.',
     result: 'High-volume scheduling engine built',
-    icon: FiUsers,
-    accent: 'from-slate-100 to-blue-100',
+    thumbnail: socifiyThumbnail,
     href: '/projects/socifiy',
   },
   {
@@ -35,8 +31,7 @@ const projects = [
     description:
       'Messaging platform connecting AI chatbots with Meta, Slack, and business channels.',
     result: 'Real-time routing with high reliability',
-    icon: FiMessageSquare,
-    accent: 'from-blue-50 to-indigo-100',
+    thumbnail: omniChannelThumbnail,
     href: '/projects/omnichannel-ai-chatbot',
   },
   {
@@ -45,8 +40,7 @@ const projects = [
     description:
       'RAG system with vector search, semantic retrieval, and automated training pipelines.',
     result: 'Scalable RAG pipeline with Pinecone',
-    icon: FiShare2,
-    accent: 'from-slate-100 to-cyan-100',
+    thumbnail: ragThumbnail,
     href: '/projects/rag-ai-chatbot',
   },
   {
@@ -55,8 +49,7 @@ const projects = [
     description:
       'Enterprise billing platform with subscriptions, analytics, and customer lifecycle management.',
     result: 'Stripe integration with automated workflows',
-    icon: FiBarChart2,
-    accent: 'from-indigo-50 to-violet-100',
+    thumbnail: billingThumbnail,
     href: '/projects/billing-bi',
   },
 ]
@@ -83,20 +76,18 @@ function ProjectsSection() {
 
         <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {projects.map((project) => {
-            const Icon = project.icon
-
             return (
               <article
                 key={project.title}
                 className="flex overflow-hidden rounded-2xl border border-blue-400/20 bg-[#0b1424]/85 shadow-xl shadow-black/20"
               >
                 <div className="flex w-full flex-col">
-                  <div
-                    className={`flex h-32 items-center justify-center bg-gradient-to-br ${project.accent}`}
-                  >
-                    <div className="rounded-2xl border border-blue-400/20 bg-white/80 p-5 shadow-lg">
-                      <Icon className="text-4xl text-blue-600" />
-                    </div>
+                  <div className="h-32 overflow-hidden bg-[#0f1a2c]">
+                    <img
+                      src={project.thumbnail}
+                      alt={`${project.title} thumbnail`}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
 
                   <div className="flex flex-1 flex-col p-4">
