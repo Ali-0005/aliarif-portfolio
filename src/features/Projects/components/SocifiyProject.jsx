@@ -1,6 +1,6 @@
 import {
-  FiArrowLeft, FiBarChart2, FiBriefcase, FiCalendar, FiCheckCircle,
-  FiCloud, FiCode, FiDatabase, FiGrid, FiLayers, FiLock, FiServer,
+  FiArrowLeft, FiArrowRight, FiBarChart2, FiBriefcase, FiCalendar, FiCheckCircle,
+  FiCloud, FiExternalLink, FiGrid, FiLayers, FiLink, FiLock, FiServer,
   FiTarget, FiUsers, FiZap,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
@@ -51,7 +51,7 @@ function SocifiyProject() {
           <div className="mt-7 grid items-center gap-8 lg:grid-cols-[1fr_1.05fr]">
             <div>
               <span className="rounded-md border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase text-blue-400">Featured Case Study</span>
-              <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">SOCIFIY – Social Media Management SaaS Platform</h1>
+              <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">SOCIFIY - Social Media Management SaaS Platform</h1>
               <p className="mt-5 max-w-2xl leading-8 text-slate-300">A cloud-native social media management platform for businesses, agencies, and teams to automate content publishing, collaborate seamlessly, and manage social operations from a single dashboard.</p>
               <div className="mt-6 flex flex-wrap gap-5 text-sm text-slate-200">
                 <span>Multi-Tenant SaaS</span><span>Workflow Automation</span><span>Content Scheduling</span><span>Team Collaboration</span>
@@ -60,31 +60,62 @@ function SocifiyProject() {
             <img src={heroDemo} alt="SOCIFIY dashboard shown on laptop and mobile devices" className="w-full object-contain" />
           </div>
 
-          <div className="mt-10 grid gap-7 lg:grid-cols-[190px_minmax(0,1fr)_280px]">
+          <div className="mt-10 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">
             <aside className="space-y-5">
               <nav className={`${card} p-3`}>
                 {['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Technologies', 'Results & Impact', 'Outcome'].map((item) => (
                   <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} className="block rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-blue-500/10 hover:text-blue-400">{item}</a>
                 ))}
               </nav>
-              <div className={`${card} p-5`}>
-                <p className="font-semibold">Have a similar project?</p>
-                <p className="mt-3 text-sm leading-6 text-slate-400">Let’s build something powerful together.</p>
-                <Link to="/#contact" className="mt-4 inline-flex w-full justify-center rounded-lg bg-blue-600 px-3 py-3 text-sm font-semibold">Book a Discovery Call</Link>
+              <div className={`${card} bg-gradient-to-br from-[#0b1424]/90 via-[#10245c]/80 to-purple-900/45 p-5`}>
+                <p className="text-lg font-bold">Have a similar project?</p>
+                <p className="mt-4 text-sm leading-7 text-slate-300">Let's build something powerful together.</p>
+                <Link to="/#contact" className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-blue-600 px-4 py-4 text-sm font-semibold transition hover:bg-blue-500">
+                  Book a Discovery Call
+                  <FiArrowRight />
+                </Link>
               </div>
-              <div className={`${card} space-y-4 p-5 text-sm`}>
-                <p><FiBriefcase className="mr-2 inline text-blue-400" />SaaS Platform</p>
-                <p><FiGrid className="mr-2 inline text-blue-400" />Social Media / Marketing</p>
-                <p><FiCalendar className="mr-2 inline text-blue-400" />Jul 2025 – Present</p>
-                <p><FiUsers className="mr-2 inline text-blue-400" />Solo Full-Stack Engineer</p>
-                <p><FiCloud className="mr-2 inline text-blue-400" />AWS Cloud Infrastructure</p>
+              <div className={`${card} p-5`}>
+                <h2 className="text-lg font-bold">Project Information</h2>
+                <div className="mt-6 space-y-6 text-sm">
+                  {[
+                    [FiBriefcase, 'Project Type', 'SaaS Platform'],
+                    [FiGrid, 'Industry', 'Social Media / Marketing'],
+                    [FiCalendar, 'Duration', 'Jul 2025 - Jan 2026'],
+                    [FiUsers, 'Team', 'Solo Full-Stack Engineer'],
+                    [FiCloud, 'Deployment', 'AWS Cloud Infrastructure'],
+                  ].map(([Icon, label, value]) => (
+                    <div key={label} className="flex gap-4">
+                      <Icon className="mt-1 shrink-0 text-xl text-blue-400" />
+                      <div>
+                        <p className="text-xs font-semibold text-slate-500">{label}</p>
+                        <p className="mt-1 font-semibold leading-6 text-slate-100">{value}</p>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="flex gap-4">
+                    <FiLink className="mt-1 shrink-0 text-xl text-blue-400" />
+                    <div>
+                      <p className="text-xs font-semibold text-slate-500">Live Website</p>
+                      <a
+                        href="https://www.socifiy.net"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-1 inline-flex items-center gap-2 font-semibold text-blue-400 hover:text-blue-300"
+                      >
+                        www.socifiy.net
+                        <FiExternalLink />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </aside>
 
             <div className="divide-y divide-white/10">
               <section id="overview" className="pb-7"><Title icon={FiBriefcase}>Overview</Title>
                 <p className="mt-4 leading-7 text-slate-300">SOCIFIY is a cloud-native social media management platform that helps businesses and agencies schedule content, automate publishing, collaborate with teams, and manage multiple social media accounts from a centralized dashboard.</p>
-                <p className="mt-3 leading-7 text-slate-300">I architected and built the platform from the ground up — including backend systems, frontend dashboards, workflow automation, and cloud infrastructure.</p>
+                <p className="mt-3 leading-7 text-slate-300">I architected and built the platform from the ground up including backend systems, frontend dashboards, workflow automation, and cloud infrastructure.</p>
               </section>
               <section id="business-challenge" className="py-7"><Title icon={FiTarget}>Business Challenge</Title>
                 <p className="mt-4 text-slate-300">Managing social media at scale is complex. Teams need tools that help them:</p>
@@ -97,7 +128,7 @@ function SocifiyProject() {
                 <div className="mt-5 grid gap-3 md:grid-cols-2">{contributions.map(([name, description]) => <article key={name} className={`${card} p-4`}><h3 className="text-sm font-semibold">{name}</h3><p className="mt-2 text-xs leading-5 text-slate-400">{description}</p></article>)}</div>
               </section>
               <section id="architecture" className="py-7"><Title icon={FiServer}>Architecture Overview</Title>
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">{['React Dashboard → Django REST APIs → PostgreSQL (RDS)', 'Content Scheduled → Celery Worker → Platform Integrations', 'User → CloudFront → EC2 / S3 → RDS / Redis'].map((item) => <div key={item} className={`${card} p-5 text-center text-xs leading-6 text-slate-300`}>{item}</div>)}</div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">{['React Dashboard -> Django REST APIs -> PostgreSQL (RDS)', 'Content Scheduled -> Celery Worker -> Platform Integrations', 'User -> CloudFront -> EC2 / S3 -> RDS / Redis'].map((item) => <div key={item} className={`${card} p-5 text-center text-xs leading-6 text-slate-300`}>{item}</div>)}</div>
               </section>
               <section id="outcome" className="py-7"><Title icon={FiTarget}>Outcome</Title>
                 <p className="mt-4 leading-7 text-slate-300">SOCIFIY is now a production-ready social media management platform trusted by businesses and agencies for their content scheduling, automation, and team collaboration needs. The platform is built for scale, reliability, and performance.</p>
@@ -106,7 +137,7 @@ function SocifiyProject() {
 
             <aside className="space-y-5">
               <div className={`${card} p-5`}><h2 className="text-lg font-bold">Project Snapshot</h2>
-                <div className="mt-5 space-y-4 text-sm text-slate-300"><p>Type<br /><b className="text-white">SaaS Platform</b></p><p>Role<br /><b className="text-white">Full-Stack & AI Automation Engineer</b></p><p>Duration<br /><b className="text-white">Jul 2025 – Present</b></p></div>
+                <div className="mt-5 space-y-4 text-sm text-slate-300"><p>Type<br /><b className="text-white">SaaS Platform</b></p><p>Role<br /><b className="text-white">Full-Stack & AI Automation Engineer</b></p><p>Duration<br /><b className="text-white">Jul 2025 - Jan 2026</b></p></div>
               </div>
               <div id="technologies" className={`${card} p-5`}><h2 className="text-lg font-bold">Technologies Used</h2>
                 <div className="mt-5 space-y-4">{Object.entries(technologies).map(([group, items]) => <div key={group}><p className="mb-2 text-xs font-semibold text-blue-400">{group}</p><div className="flex flex-wrap gap-2">{items.map((item) => <span key={item} className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-xs text-slate-300">{item}</span>)}</div></div>)}</div>
