@@ -3,7 +3,6 @@ import {
   FiAperture,
   FiBarChart2,
   FiBriefcase,
-  FiCalendar,
   FiCheckCircle,
   FiCode,
   FiDatabase,
@@ -22,6 +21,7 @@ import {
 import { Link } from 'react-router-dom'
 import casamereCover from '../../../assets/casamere.png'
 import Navbar from '../../Home/components/Navbar'
+import ProjectLeftSidebar from './ProjectLeftSidebar'
 import {
   contributions,
   projectSections,
@@ -29,6 +29,13 @@ import {
 } from '../../../data/realEstateProject'
 
 const cardClass = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
+const projectInfo = [
+  { icon: 'briefcase', label: 'Project Type', value: 'Enterprise Platform' },
+  { icon: 'grid', label: 'Industry', value: 'Real Estate' },
+  { icon: 'calendar', label: 'Duration', value: 'Feb 2026 - Present' },
+  { icon: 'user', label: 'Team', value: 'Cross-functional Team' },
+  { icon: 'cloud', label: 'Deployment', value: 'Cloud Infrastructure' },
+]
 
 const contributionIcons = {
   'Geospatial Search & Discovery': {
@@ -133,7 +140,7 @@ function CasamereProject() {
               </span>
               <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
                 <a href="https://www.casamere.com/" target="_blank" rel="noreferrer" className="transition hover:text-blue-400">
-                  CASAMERE – Real Estate & Community Discovery Platform
+                  Real Estate & Community Discovery Platform
                 </a>
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
@@ -149,30 +156,13 @@ function CasamereProject() {
             <DemoThumbnail />
           </div>
 
-          <div className="mt-12 grid gap-7 lg:grid-cols-[200px_minmax(0,1fr)_280px]">
-            <aside className="space-y-5">
-              <nav className={`${cardClass} p-3`}>
-                {projectSections.map((section) => (
-                  <a key={section.id} href={`#${section.id}`} className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-slate-300 transition hover:bg-blue-500/10 hover:text-blue-400">
-                    <span className="h-2 w-2 rounded-full bg-slate-600" />
-                    {section.label}
-                  </a>
-                ))}
-              </nav>
-              <div className={`${cardClass} p-5`}>
-                <p className="font-semibold">Interested in building something similar?</p>
-                <p className="mt-3 text-sm leading-6 text-slate-400">Let’s discuss how I can help you build a scalable solution.</p>
-                <Link to="/#contact" className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold">
-                  Schedule a Call
-                </Link>
-              </div>
-              <div className={`${cardClass} space-y-5 p-5 text-sm`}>
-                <p className="flex items-start gap-3"><FiBriefcase className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Project Type</small><br />Enterprise Platform</span></p>
-                <p className="flex items-start gap-3"><FiGrid className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Industry</small><br />Real Estate</span></p>
-                <p className="flex items-start gap-3"><FiCalendar className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Duration</small><br />Feb 2026 – Present</span></p>
-                <p className="flex items-start gap-3"><FiUser className="mt-1 shrink-0 text-blue-400" /> <span><small className="text-slate-400">Team</small><br />Cross-functional Team</span></p>
-              </div>
-            </aside>
+          <div className="mt-12 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">
+            <ProjectLeftSidebar
+              cardClass={cardClass}
+              sections={projectSections}
+              info={projectInfo}
+              liveWebsite={{ href: 'https://www.casamere.com/', label: 'www.casamere.com' }}
+            />
 
             <div className="divide-y divide-white/10">
               <section id="overview" className="pb-7">

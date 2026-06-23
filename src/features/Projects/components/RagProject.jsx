@@ -1,13 +1,22 @@
 import {
-  FiArrowLeft, FiBookOpen, FiBriefcase, FiCalendar, FiCheckCircle,
-  FiCode, FiDatabase, FiGrid, FiLayers, FiMessageCircle, FiSearch,
-  FiServer, FiTarget, FiTrendingUp, FiUser, FiZap,
+  FiArrowLeft, FiBriefcase, FiCheckCircle,
+  FiDatabase, FiServer, FiTarget, FiTrendingUp, FiZap,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
+import ProjectLeftSidebar from './ProjectLeftSidebar'
 
 const card = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
 const sections = ['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Engineering Challenges', 'Technologies', 'Results & Impact', 'Outcome']
+const projectInfo = [
+  { icon: 'briefcase', label: 'Project Type', value: 'AI Platform / RAG System' },
+  { icon: 'grid', label: 'Industry', value: 'AI / SaaS / Automation' },
+  { icon: 'calendar', label: 'Duration', value: 'Jan 2024 - Present' },
+  { icon: 'user', label: 'Role', value: 'AI Systems & Backend Engineer' },
+  { icon: 'user', label: 'Team', value: 'Solo Engineer' },
+  { icon: 'cloud', label: 'Deployment', value: 'AWS Cloud' },
+  { icon: 'briefcase', label: 'Associated With', value: 'Enterprise AI Chatbot Ecosystem' },
+]
 const features = [
   ['RAG Engine', 'Retrieval-augmented generation for accurate, context-aware responses.'],
   ['Multi-Source Training', 'Automated pipelines for documents, web, spreadsheets, and Q&A datasets.'],
@@ -47,12 +56,15 @@ function RagProject() {
       <section className="px-5 pb-16 pt-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Link to="/#projects" className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-blue-400"><FiArrowLeft />Back to Projects</Link>
-          <div className="mt-7 grid gap-7 lg:grid-cols-[190px_minmax(0,1fr)_280px]">
-            <aside className="space-y-5">
-              <nav className={`${card} p-3`}>{sections.map((item) => <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} className="block rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-blue-500/10 hover:text-blue-400">{item}</a>)}</nav>
-              <div className="rounded-xl border border-blue-500/20 bg-gradient-to-br from-blue-950 to-purple-950 p-5"><p className="font-semibold">Interested in building an AI system?</p><p className="mt-3 text-sm leading-6 text-slate-400">I help businesses build intelligent, scalable and production-ready AI solutions.</p><Link to="/#contact" className="mt-4 inline-flex w-full justify-center rounded-lg bg-blue-600 px-3 py-3 text-sm font-semibold">Schedule a Call</Link></div>
-              <div className={`${card} space-y-4 p-5 text-sm`}><h2 className="font-bold">Project Information</h2><p><FiBriefcase className="mr-2 inline text-blue-400" />AI Platform / RAG System</p><p><FiGrid className="mr-2 inline text-blue-400" />AI • SaaS • Automation</p><p><FiCalendar className="mr-2 inline text-blue-400" />Jan 2024 – Present</p><p><FiUser className="mr-2 inline text-blue-400" />AI Systems & Backend Engineer</p><p><FiUser className="mr-2 inline text-blue-400" />Solo Engineer</p><p><FiServer className="mr-2 inline text-blue-400" />AWS Cloud</p><p><FiLayers className="mr-2 inline text-blue-400" />Enterprise AI Chatbot Ecosystem</p></div>
-            </aside>
+          <div className="mt-7 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">
+            <ProjectLeftSidebar
+              cardClass={card}
+              sections={sections}
+              ctaTitle="Interested in building an AI system?"
+              ctaText="I help businesses build intelligent, scalable and production-ready AI solutions."
+              ctaLabel="Schedule a Call"
+              info={projectInfo}
+            />
 
             <div className="min-w-0">
               <div className="grid items-center gap-7 lg:grid-cols-[1fr_1.15fr]">
@@ -85,3 +97,4 @@ function RagProject() {
 }
 
 export default RagProject
+

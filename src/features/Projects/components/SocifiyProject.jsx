@@ -1,13 +1,21 @@
 import {
-  FiArrowLeft, FiArrowRight, FiBarChart2, FiBriefcase, FiCalendar, FiCheckCircle,
-  FiCloud, FiExternalLink, FiGrid, FiLayers, FiLink, FiLock, FiServer,
-  FiTarget, FiUsers, FiZap,
+  FiArrowLeft, FiBarChart2, FiBriefcase, FiCalendar, FiCheckCircle,
+  FiLayers, FiLock, FiServer, FiTarget, FiUsers, FiZap,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
 import heroDemo from '../../../assets/socifiy-hero-demo.png'
+import ProjectLeftSidebar from './ProjectLeftSidebar'
 
 const card = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
+const sections = ['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Technologies', 'Results & Impact', 'Outcome']
+const projectInfo = [
+  { icon: 'briefcase', label: 'Project Type', value: 'SaaS Platform' },
+  { icon: 'grid', label: 'Industry', value: 'Social Media / Marketing' },
+  { icon: 'calendar', label: 'Duration', value: 'Jul 2025 - Jan 2026' },
+  { icon: 'users', label: 'Team', value: 'Solo Full-Stack Engineer' },
+  { icon: 'cloud', label: 'Deployment', value: 'AWS Cloud Infrastructure' },
+]
 const challenges = [
   'Coordinate multiple users and roles', 'Schedule and publish content reliably',
   'Manage workflows and approvals', 'Integrate with multiple platforms',
@@ -61,56 +69,12 @@ function SocifiyProject() {
           </div>
 
           <div className="mt-10 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">
-            <aside className="space-y-5">
-              <nav className={`${card} p-3`}>
-                {['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Technologies', 'Results & Impact', 'Outcome'].map((item) => (
-                  <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} className="block rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-blue-500/10 hover:text-blue-400">{item}</a>
-                ))}
-              </nav>
-              <div className={`${card} bg-gradient-to-br from-[#0b1424]/90 via-[#10245c]/80 to-purple-900/45 p-5`}>
-                <p className="text-lg font-bold">Have a similar project?</p>
-                <p className="mt-4 text-sm leading-7 text-slate-300">Let's build something powerful together.</p>
-                <Link to="/#contact" className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-blue-600 px-4 py-4 text-sm font-semibold transition hover:bg-blue-500">
-                  Book a Discovery Call
-                  <FiArrowRight />
-                </Link>
-              </div>
-              <div className={`${card} p-5`}>
-                <h2 className="text-lg font-bold">Project Information</h2>
-                <div className="mt-6 space-y-6 text-sm">
-                  {[
-                    [FiBriefcase, 'Project Type', 'SaaS Platform'],
-                    [FiGrid, 'Industry', 'Social Media / Marketing'],
-                    [FiCalendar, 'Duration', 'Jul 2025 - Jan 2026'],
-                    [FiUsers, 'Team', 'Solo Full-Stack Engineer'],
-                    [FiCloud, 'Deployment', 'AWS Cloud Infrastructure'],
-                  ].map(([Icon, label, value]) => (
-                    <div key={label} className="flex gap-4">
-                      <Icon className="mt-1 shrink-0 text-xl text-blue-400" />
-                      <div>
-                        <p className="text-xs font-semibold text-slate-500">{label}</p>
-                        <p className="mt-1 font-semibold leading-6 text-slate-100">{value}</p>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="flex gap-4">
-                    <FiLink className="mt-1 shrink-0 text-xl text-blue-400" />
-                    <div>
-                      <p className="text-xs font-semibold text-slate-500">Live Website</p>
-                      <a
-                        href="https://www.socifiy.net"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-1 inline-flex items-center gap-2 font-semibold text-blue-400 hover:text-blue-300"
-                      >
-                        www.socifiy.net
-                        <FiExternalLink />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </aside>
+            <ProjectLeftSidebar
+              cardClass={card}
+              sections={sections}
+              info={projectInfo}
+              liveWebsite={{ href: 'https://www.socifiy.net', label: 'www.socifiy.net' }}
+            />
 
             <div className="divide-y divide-white/10">
               <section id="overview" className="pb-7"><Title icon={FiBriefcase}>Overview</Title>

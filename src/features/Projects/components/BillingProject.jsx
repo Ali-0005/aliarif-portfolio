@@ -1,13 +1,21 @@
 import {
-  FiArrowLeft, FiBarChart2, FiBriefcase, FiCalendar, FiCheckCircle,
-  FiCreditCard, FiGrid, FiLayers, FiMail, FiRefreshCw, FiServer,
+  FiArrowLeft, FiBarChart2, FiBriefcase, FiCheckCircle,
+  FiCreditCard, FiLayers, FiRefreshCw, FiServer,
   FiShield, FiTarget, FiTrendingUp, FiUser, FiZap,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
+import ProjectLeftSidebar from './ProjectLeftSidebar'
 
 const card = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
 const sections = ['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Engineering Challenges', 'Technologies', 'Results & Impact', 'Outcome']
+const projectInfo = [
+  { icon: 'briefcase', label: 'Project Type', value: 'Backend Project' },
+  { icon: 'grid', label: 'Industry', value: 'SaaS / Fintech' },
+  { icon: 'calendar', label: 'Duration', value: 'Jan 2024 - Present' },
+  { icon: 'cloud', label: 'Environment', value: 'Production' },
+  { icon: 'briefcase', label: 'Associated With', value: 'Enterprise AI Chatbot Platform' },
+]
 const needs = ['Subscription Plans', 'Free Trials', 'Add-ons', 'Invoices', 'Coupons & Discounts', 'Customer Onboarding', 'Payment Failures', 'Business Reporting', 'Customer Lifecycle Tracking']
 const features = [
   ['Subscription Billing System', 'Flexible subscription management with plans, trials, add-ons, coupons and renewals.'],
@@ -50,12 +58,14 @@ function BillingProject() {
       <section className="px-5 pb-16 pt-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Link to="/#projects" className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-blue-400"><FiArrowLeft />Back to Projects</Link>
-          <div className="mt-7 grid gap-7 lg:grid-cols-[190px_minmax(0,1fr)_280px]">
-            <aside className="space-y-5">
-              <nav className={`${card} p-3`}>{sections.map((item) => <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} className="block rounded-lg px-3 py-3 text-sm text-slate-300 hover:bg-blue-500/10 hover:text-blue-400">{item}</a>)}</nav>
-              <div className="rounded-xl border border-blue-500/20 bg-gradient-to-br from-blue-950 to-purple-950 p-5"><p className="font-semibold">Need a similar solution?</p><p className="mt-3 text-sm leading-6 text-slate-400">I can help you build robust billing systems, subscription platforms, and business intelligence solutions.</p><Link to="/#contact" className="mt-4 inline-flex w-full justify-center rounded-lg bg-blue-600 px-3 py-3 text-sm font-semibold">Book a Discovery Call</Link></div>
-              <div className={`${card} space-y-4 p-5 text-sm`}><h2 className="font-bold">Project Information</h2><p><FiBriefcase className="mr-2 inline text-blue-400" />Backend Project</p><p><FiGrid className="mr-2 inline text-blue-400" />SaaS / Fintech</p><p><FiCalendar className="mr-2 inline text-blue-400" />Jan 2024 – Present</p><p><FiServer className="mr-2 inline text-blue-400" />Production</p><p><FiLayers className="mr-2 inline text-blue-400" />Enterprise AI Chatbot Platform</p></div>
-            </aside>
+          <div className="mt-7 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">
+            <ProjectLeftSidebar
+              cardClass={card}
+              sections={sections}
+              ctaTitle="Need a similar solution?"
+              ctaText="I can help you build robust billing systems, subscription platforms, and business intelligence solutions."
+              info={projectInfo}
+            />
 
             <div className="min-w-0">
               <div className="grid items-center gap-7 lg:grid-cols-[1fr_1.15fr]">
@@ -93,3 +103,4 @@ function BillingProject() {
 }
 
 export default BillingProject
+
