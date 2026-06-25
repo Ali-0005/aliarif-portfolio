@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
 import ragCover from '../../../assets/cover/Rag.png'
+import ragCoverWebp from '../../../assets/cover/Rag.webp'
 import architectureImage from '../../../assets/rag_architecture.png'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
 
@@ -91,7 +92,10 @@ function RagProject() {
                 <span className="flex items-center gap-2"><FiMessageSquare className="text-blue-400" /> Conversational AI</span>
               </div>
             </div>
-            <img src={ragCover} alt="RAG chatbot engine cover" className="w-full object-contain" />
+            <picture className="block">
+              <source srcSet={ragCoverWebp} type="image/webp" />
+              <img src={ragCover} alt="RAG chatbot engine cover" className="w-full object-contain" decoding="async" />
+            </picture>
           </div>
 
           <div className="mt-10 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">

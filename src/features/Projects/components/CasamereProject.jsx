@@ -19,7 +19,8 @@ import {
   FiUser,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import casamereCover from '../../../assets/casamere.png'
+import casamereCover from '../../../assets/cover/casamere.png'
+import casamereCoverWebp from '../../../assets/cover/casamere.webp'
 import Navbar from '../../Home/components/Navbar'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
 import {
@@ -83,11 +84,15 @@ const architectureIcons = {
 function DemoThumbnail() {
   return (
     <div className="relative mx-auto aspect-[16/9] w-full max-w-xl rounded-xl border border-white/20 bg-[#101b2b] p-3 shadow-2xl shadow-blue-950/70">
-      <img
-        src={casamereCover}
-        alt="Casamere real estate platform cover"
-        className="h-full w-full rounded-lg object-cover"
-      />
+      <picture className="block h-full w-full">
+        <source srcSet={casamereCoverWebp} type="image/webp" />
+        <img
+          src={casamereCover}
+          alt="Casamere real estate platform cover"
+          className="h-full w-full rounded-lg object-cover"
+          decoding="async"
+        />
+      </picture>
     </div>
   )
 }

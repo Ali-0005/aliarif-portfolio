@@ -9,6 +9,7 @@ import {
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
 import billingCover from '../../../assets/cover/Billing.png'
+import billingCoverWebp from '../../../assets/cover/Billing.webp'
 import architectureImage from '../../../assets/billing_architecture.png'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
 
@@ -117,7 +118,10 @@ function BillingProject() {
                 <span className="flex items-center gap-2"><FiZap className="text-blue-400" /> Workflow Automation</span>
               </div>
             </div>
-            <img src={billingCover} alt="Billing and business intelligence platform cover" className="w-full object-contain" />
+            <picture className="block">
+              <source srcSet={billingCoverWebp} type="image/webp" />
+              <img src={billingCover} alt="Billing and business intelligence platform cover" className="mx-auto w-full max-w-xl object-contain lg:max-h-[460px]" decoding="async" />
+            </picture>
           </div>
 
           <div className="mt-10 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">

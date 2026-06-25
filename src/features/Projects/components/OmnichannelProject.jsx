@@ -9,6 +9,7 @@ import { FaFacebookMessenger, FaInstagram, FaSlack } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import architectureImage from '../../../assets/omni_channel_architecture.png'
 import omnichannelImage from '../../../assets/cover/omnichannel.png'
+import omnichannelImageWebp from '../../../assets/cover/omnichannel.webp'
 import Navbar from '../../Home/components/Navbar'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
 
@@ -98,11 +99,15 @@ function Title({ icon: Icon, children }) {
 function DemoThumbnail() {
   return (
     <div className="relative mx-auto aspect-[1.94/1] w-full max-w-xl rounded-xl border border-white/20 bg-[#101b2b] p-3 shadow-2xl shadow-blue-950/70">
-      <img
-        src={omnichannelImage}
-        alt="Omnichannel AI chatbot integration"
-        className="h-full w-full rounded-lg object-contain"
-      />
+      <picture className="block h-full w-full">
+        <source srcSet={omnichannelImageWebp} type="image/webp" />
+        <img
+          src={omnichannelImage}
+          alt="Omnichannel AI chatbot integration"
+          className="h-full w-full rounded-lg object-contain"
+          decoding="async"
+        />
+      </picture>
     </div>
   )
 }

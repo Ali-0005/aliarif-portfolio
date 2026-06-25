@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
 import architectureImage from '../../../assets/socifiy_architecture.png'
 import heroDemo from '../../../assets/socifiy-hero-demo.png'
+import heroDemoWebp from '../../../assets/socifiy-hero-demo.webp'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
 
 const card = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
@@ -76,7 +77,10 @@ function SocifiyProject() {
                 <span className="flex items-center gap-2"><FiUsers className="text-blue-400" /> Team Collaboration</span>
               </div>
             </div>
-            <img src={heroDemo} alt="SOCIFIY dashboard shown on laptop and mobile devices" className="w-full object-contain" />
+            <picture className="block">
+              <source srcSet={heroDemoWebp} type="image/webp" />
+              <img src={heroDemo} alt="SOCIFIY dashboard shown on laptop and mobile devices" className="w-full object-contain" decoding="async" />
+            </picture>
           </div>
 
           <div className="mt-10 grid gap-7 lg:grid-cols-[240px_minmax(0,1fr)_280px]">
