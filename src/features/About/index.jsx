@@ -18,9 +18,15 @@ import {
 } from 'react-icons/fi'
 import { FaAws, FaPython } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { SiDjango, SiOpenai, SiPostgresql } from 'react-icons/si'
+import { SiDjango, SiOpenai, SiPostgresql, SiReact } from 'react-icons/si'
 import { profile } from '../../data/profile'
-import portrait from '../../assets/self_employee.jfif'
+import heroImg from '../../assets/hero.png'
+import ituLogo from '../../assets/Logo-ITU-NEW.png'
+import rapidevLogo from '../../assets/rapidev.png'
+import governmentLogo from '../../assets/Government_of_pak.png'
+import selfEmployeeLogo from '../../assets/self_employee.jfif'
+import icmaLogo from '../../assets/icma_logo.png'
+import highlineLogo from '../../assets/highline_residential.png'
 import Navbar from '../Home/components/Navbar'
 import Footer from '../Home/components/Footer'
 
@@ -28,21 +34,27 @@ const journeyItems = [
   {
     icon: FiLayers,
     role: 'Research Associate',
-    period: '2016 - 2020',
+    period: 'Sep 2016 - Dec 2020',
+    logo: ituLogo,
+    link: 'https://itu.edu.pk/',
     description:
       'Conducted engineering research, published in IEEE journals, supervised student projects and supported teaching.',
   },
   {
     icon: FiCode,
     role: 'System Software Engineer',
-    period: '2021',
+    period: 'Jan 2021 - Dec 2021',
+    logo: rapidevLogo,
+    link: 'https://rapidev.com/',
     description:
       'Worked on system modeling, testing, performance analysis and reliable engineering solution delivery.',
   },
   {
     icon: FiBriefcase,
     role: 'Software Engineer',
-    period: '2022 - 2025',
+    period: 'Jan 2022 - Jun 2025',
+    logo: governmentLogo,
+    link: 'https://www.pakistan.gov.pk/',
     description:
       'Built Django APIs, AI systems, Stripe billing, training pipelines, automation workflows and cloud-deployed SaaS platforms.',
   },
@@ -50,13 +62,25 @@ const journeyItems = [
     icon: FiServer,
     role: 'Independent Software Developer',
     period: '2025 - Present',
+    logo: selfEmployeeLogo,
     description:
       'Delivering full-stack SaaS products, AI solutions, integrations and cloud infrastructure for clients worldwide.',
   },
   {
+    icon: FiFileText,
+    role: 'AI Instructor (Generative AI)',
+    period: 'Dec 2025 - Present',
+    logo: icmaLogo,
+    link: 'https://www.icmadigital.org/',
+    description:
+      'Delivering Gen-AI and business productivity training through live lectures, hands-on labs, assessments and project mentoring.',
+  },
+  {
     icon: FiTrendingUp,
     role: 'Backend Software Engineer',
-    period: '2026 - Present',
+    period: 'Jan 2026 - Present',
+    logo: highlineLogo,
+    link: 'https://www.hlres.com/',
     description:
       'Contributing to large-scale backend systems, platform reliability and long-term engineering improvements.',
   },
@@ -154,11 +178,12 @@ const expertise = [
 ]
 
 const techBadges = [
-  { icon: FaPython, label: 'Python', className: 'left-5 top-10' },
-  { icon: SiPostgresql, label: 'PostgreSQL', className: 'left-2 top-32' },
-  { icon: SiDjango, label: 'Django', className: 'right-7 top-16' },
-  { icon: SiOpenai, label: 'OpenAI', className: 'right-7 top-36' },
-  { icon: FaAws, label: 'AWS', className: 'bottom-14 right-10' },
+  { icon: FaPython, label: 'Python', className: 'left-0 top-16 -translate-x-6' },
+  { icon: SiDjango, label: 'Django', className: 'right-0 top-24 translate-x-6' },
+  { icon: SiPostgresql, label: 'PostgreSQL', className: 'left-0 top-44 -translate-x-10' },
+  { icon: SiOpenai, label: 'OpenAI', className: 'right-0 top-56 translate-x-10' },
+  { icon: FaAws, label: 'AWS', className: 'right-6 bottom-32 translate-x-10' },
+  { icon: SiReact, label: 'React', className: 'left-6 bottom-32 -translate-x-10' },
 ]
 
 function SectionTitle({ title, subtitle }) {
@@ -205,7 +230,8 @@ function About() {
                 View My Work <FiArrowRight />
               </Link>
               <a
-                href="/resume.pdf"
+                href={`${import.meta.env.BASE_URL}Ali-Arif-Python-Django-Backend-Developer-Resume.pdf`}
+                download="Ali-Arif-Python-Django-Backend-Developer-Resume.pdf"
                 className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-slate-950/60 px-6 py-3 text-sm font-semibold text-white transition hover:border-blue-300 hover:bg-white/5"
               >
                 Download Resume <FiDownload />
@@ -217,28 +243,53 @@ function About() {
             </p>
           </div>
 
-          <div className="relative min-h-[380px] overflow-hidden rounded-2xl border border-blue-400/20 bg-[#07111f] p-5 shadow-2xl shadow-black/30">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.18),transparent_36%)]" />
-            <div className="absolute inset-6 rounded-2xl border border-blue-400/10" />
-            <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(59,130,246,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.18)_1px,transparent_1px)] [background-size:42px_42px]" />
-            <img
-              src={portrait}
-              alt={profile.name}
-              className="absolute bottom-0 left-1/2 z-10 h-[92%] max-h-[520px] -translate-x-1/2 object-cover object-top grayscale"
-            />
+          <div className="relative mx-auto w-full max-w-xl">
+            <div className="relative rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-2xl shadow-blue-950/60 backdrop-blur">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 via-transparent to-indigo-600/20" />
+
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#07111f]">
+                <img
+                  src={heroImg}
+                  alt="Ali Arif - Backend and AI Systems Engineer"
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+
             {techBadges.map((badge) => {
               const Icon = badge.icon
 
               return (
                 <div
                   key={badge.label}
-                  className={`absolute z-20 hidden items-center gap-3 rounded-lg border border-blue-400/25 bg-slate-950/80 px-4 py-3 text-sm font-semibold text-white shadow-xl shadow-black/25 backdrop-blur sm:flex ${badge.className}`}
+                    className={`absolute hidden rounded-2xl border border-white/10 bg-[#0b1424]/90 px-4 py-3 text-center shadow-xl shadow-black/30 backdrop-blur md:block ${badge.className}`}
                 >
-                  <Icon className="text-2xl text-blue-400" />
-                  {badge.label}
+                    <Icon className="mx-auto text-3xl text-blue-400" />
+                    <p className="mt-2 text-xs font-semibold text-white">
+                      {badge.label}
+                    </p>
                 </div>
               )
             })}
+
+              <div className="absolute -bottom-10 left-1/2 w-[90%] -translate-x-1/2 rounded-2xl border border-white/10 bg-[#0b1424]/95 p-5 shadow-2xl shadow-black/40 backdrop-blur">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <p className="text-lg font-bold text-white">5+</p>
+                    <p className="text-[11px] text-slate-400">Years Experience</p>
+                  </div>
+                  <div>
+                    <p className="text-lg font-bold text-white">20+</p>
+                    <p className="text-[11px] text-slate-400">Projects Delivered</p>
+                  </div>
+                  <div>
+                    <FiCode className="mx-auto text-2xl text-blue-400" />
+                    <p className="text-[11px] text-slate-400">
+                      Backend & AI Systems Engineer
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -274,9 +325,33 @@ function About() {
                   <span className="absolute left-0 top-0 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-blue-400/30 bg-blue-500/15 text-blue-400">
                     <Icon />
                   </span>
-                  <div>
-                    <h3 className="font-semibold text-white">{item.role}</h3>
-                    <p className="mt-1 text-sm leading-6 text-slate-400">{item.description}</p>
+                  <div className="flex gap-4">
+                    {item.link ? (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex h-12 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-blue-400/20 bg-white p-1 transition hover:border-blue-300"
+                      >
+                        <img
+                          src={item.logo}
+                          alt={`${item.role} logo`}
+                          className="h-full w-full object-contain scale-125"
+                        />
+                      </a>
+                    ) : (
+                      <div className="flex h-12 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-blue-400/20 bg-white p-1">
+                        <img
+                          src={item.logo}
+                          alt={`${item.role} logo`}
+                          className="h-full w-full object-contain scale-125"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="font-semibold text-white">{item.role}</h3>
+                      <p className="mt-1 text-sm leading-6 text-slate-400">{item.description}</p>
+                    </div>
                   </div>
                   <p className="text-sm font-semibold text-blue-400">{item.period}</p>
                 </div>
