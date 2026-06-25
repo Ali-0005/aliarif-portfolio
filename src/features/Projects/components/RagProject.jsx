@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import {
   FiArrowLeft, FiBarChart2, FiBookOpen, FiBriefcase, FiCalendar, FiCheckCircle,
-  FiCloud, FiDatabase, FiGrid, FiLayers, FiMessageSquare, FiSearch, FiSend,
+  FiCloud, FiDatabase, FiGrid, FiLayers, FiMaximize2, FiMessageSquare, FiSearch, FiSend,
   FiServer, FiTarget, FiUser, FiZap,
+  FiX,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import Navbar from '../../Home/components/Navbar'
 import ragCover from '../../../assets/cover/Rag.png'
+import architectureImage from '../../../assets/rag_architecture.png'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
 
 const card = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
@@ -66,23 +69,9 @@ function Title({ icon: Icon, children }) {
   return <h2 className="flex items-center gap-3 text-xl font-bold"><Icon className="text-blue-400" />{children}</h2>
 }
 
-function Pipeline({ title, items }) {
-  return (
-    <div className={`${card} p-4`}>
-      <p className="mb-4 text-center text-sm font-semibold">{title}</p>
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        {items.map((item, index) => (
-          <div key={item} className="contents">
-            <span className="rounded-md border border-blue-400/30 bg-blue-500/5 px-3 py-2 text-center text-xs text-slate-300">{item}</span>
-            {index < items.length - 1 && <span className="text-blue-400">→</span>}
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 function RagProject() {
+  const [isArchitectureOpen, setIsArchitectureOpen] = useState(false)
+
   return (
     <main className="min-h-screen bg-[#020817] text-white">
       <Navbar />
@@ -131,11 +120,20 @@ function RagProject() {
                 <div className="mt-5 grid gap-3 md:grid-cols-2">{contributions.map(([Icon, iconClass, name, description]) => <article key={name} className={`${card} flex gap-4 p-4`}><div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border ${iconClass}`}><Icon className="text-xl" /></div><div><h3 className="text-sm font-semibold">{name}</h3><p className="mt-2 text-xs leading-5 text-slate-400">{description}</p></div></article>)}</div>
               </section>
               <section id="architecture" className="py-7"><Title icon={FiServer}>Architecture Overview</Title>
-                <div className="mt-5 grid gap-3 md:grid-cols-3">
-                  <Pipeline title="1. Training Pipeline" items={['Sources', 'Extraction', 'Chunking', 'Embeddings', 'Pinecone']} />
-                  <Pipeline title="2. Retrieval Pipeline" items={['Question', 'Embedding', 'Retrieval', 'Prompt', 'GPT', 'Response']} />
-                  <Pipeline title="3. Conversation Flow" items={['User Data', 'Chat', 'Memory', 'Context', 'GPT', 'Answer']} />
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsArchitectureOpen(true)}
+                  className={`${card} group relative mt-5 block w-full overflow-hidden p-3 text-left`}
+                >
+                  <img
+                    src={architectureImage}
+                    alt="RAG architecture overview"
+                    className="w-full rounded-lg object-contain"
+                  />
+                  <span className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-lg border border-blue-400/30 bg-[#020817]/80 text-blue-400 opacity-0 transition group-hover:opacity-100">
+                    <FiMaximize2 />
+                  </span>
+                </button>
               </section>
               <section id="results-&-impact" className="py-7"><Title icon={FiZap}>Results & Impact</Title>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{results.map(([name, text]) => <div key={name} className={`${card} p-4`}><b className="text-sm">{name}</b><p className="mt-2 text-xs leading-5 text-slate-400">{text}</p></div>)}</div>
@@ -201,6 +199,25 @@ function RagProject() {
           </div>
         </div>
       </section>
+      {isArchitectureOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4" onClick={() => setIsArchitectureOpen(false)}>
+          <div className="relative max-h-[92vh] w-full max-w-6xl" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setIsArchitectureOpen(false)}
+              className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-[#020817]/90 text-white transition hover:text-blue-400"
+              aria-label="Close architecture image"
+            >
+              <FiX />
+            </button>
+            <img
+              src={architectureImage}
+              alt="RAG architecture overview enlarged"
+              className="max-h-[92vh] w-full rounded-xl border border-white/10 object-contain"
+            />
+          </div>
+        </div>
+      )}
     </main>
   )
 }
