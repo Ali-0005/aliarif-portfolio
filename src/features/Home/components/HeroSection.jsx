@@ -86,8 +86,8 @@ function HeroSection() {
             </a>
 
             <a
-            href={`${import.meta.env.BASE_URL}Ali_ArifCV.pdf`}
-            download="Ali_ArifCV.pdf"
+            href={`${import.meta.env.BASE_URL}Ali-Arif-Python-Django-Backend-Developer-Resume.pdf`}
+            download="Ali-Arif-Python-Django-Backend-Developer-Resume.pdf"
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-transparent px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
             Download Resume

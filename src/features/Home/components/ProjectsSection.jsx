@@ -14,7 +14,7 @@ const projects = [
       'MLS-backed platform with AI-powered media workflows and geospatial search.',
     result: '88% Search Performance Improvement',
     thumbnail: casamereThumbnail,
-    href: '/projects/real-estate',
+    href: '/projects/django-real-estate-platform',
   },
   {
     title: 'SOCIFIY – Social Media Management SaaS',
@@ -23,7 +23,7 @@ const projects = [
       'Social media management SaaS for scheduling, publishing, and team collaboration.',
     result: 'High-volume scheduling engine built',
     thumbnail: socifiyThumbnail,
-    href: '/projects/socifiy',
+    href: '/projects/social-media-management-platform',
   },
   {
     title: 'Omnichannel AI Chatbot Integrations',
@@ -32,7 +32,7 @@ const projects = [
       'Messaging platform connecting AI chatbots with Meta, Slack, and business channels.',
     result: 'Real-time routing with high reliability',
     thumbnail: omniChannelThumbnail,
-    href: '/projects/omnichannel-ai-chatbot',
+    href: '/projects/omnichannel-ai-chatbot-platform',
   },
   {
     title: 'RAG-Based AI Chatbot Engine',
@@ -41,7 +41,7 @@ const projects = [
       'RAG system with vector search, semantic retrieval, and automated training pipelines.',
     result: 'Scalable RAG pipeline with Pinecone',
     thumbnail: ragThumbnail,
-    href: '/projects/rag-ai-chatbot',
+    href: '/projects/rag-ai-chatbot-engine',
   },
   {
     title: 'Billing & BI Platform',
@@ -50,7 +50,7 @@ const projects = [
       'Enterprise billing platform with subscriptions, analytics, and customer lifecycle management.',
     result: 'Stripe integration with automated workflows',
     thumbnail: billingThumbnail,
-    href: '/projects/billing-bi',
+    href: '/projects/stripe-billing-platform',
   },
 ]
 
