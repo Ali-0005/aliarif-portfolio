@@ -7,6 +7,7 @@ import {
   FiArrowUpRight,
 } from 'react-icons/fi'
 import { FaLinkedinIn } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import { SiGooglescholar } from 'react-icons/si'
 import { profile } from '../../../data/profile'
 
@@ -89,13 +90,13 @@ function AboutSection() {
               </p>
             </div>
 
-            <a
-              href="#contact"
+            <Link
+              to="/about"
               className="mt-8 inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
               More About Me
               <FiArrowRight />
-            </a>
+            </Link>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-[#0b1424]/85 p-6 shadow-2xl shadow-black/30 backdrop-blur">

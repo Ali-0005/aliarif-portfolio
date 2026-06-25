@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './features/Home'
+import About from './features/About'
 import RealEstateProject from './features/Projects'
 import SocifiyProject from './features/Projects/components/SocifiyProject'
 import OmnichannelProject from './features/Projects/components/OmnichannelProject'
@@ -12,6 +13,11 @@ const pageMetadata = {
     title: 'Ali Arif | Python Django Backend Developer | AI & SaaS Engineer',
     description:
       'Python Django backend developer building scalable SaaS platforms, AI applications, REST APIs, automation workflows, and cloud-ready software.',
+  },
+  '/about': {
+    title: 'About Ali Arif | Backend & AI Systems Engineer',
+    description:
+      'About Ali Arif, a Backend & AI Systems Engineer building scalable SaaS platforms, AI systems, automation workflows, APIs, and cloud-ready software.',
   },
   '/projects/django-real-estate-platform': {
     title: 'Django Real Estate Platform | Python Case Study | Ali Arif',
@@ -73,12 +79,15 @@ function PageMetadata() {
 }
 
 function App() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
+
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename={basename}>
       <ScrollToTop />
       <PageMetadata />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/projects/django-real-estate-platform" element={<RealEstateProject />} />
         <Route path="/projects/social-media-management-platform" element={<SocifiyProject />} />
         <Route path="/projects/omnichannel-ai-chatbot-platform" element={<OmnichannelProject />} />

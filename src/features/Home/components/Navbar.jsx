@@ -14,15 +14,13 @@ const navLinks = [
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeLink, setActiveLink] = useState(window.location.hash || '#home')
   const location = useLocation()
   const navigate = useNavigate()
+  const activeLink = location.hash || '#home'
 
   const closeMenu = () => setIsOpen(false)
 
   useEffect(() => {
-    setActiveLink(location.hash || '#home')
-
     if (location.pathname === '/' && location.hash) {
       document.querySelector(location.hash)?.scrollIntoView({ behavior: 'smooth' })
     }
@@ -31,7 +29,6 @@ function Navbar() {
   const handleNavigation = (event, href) => {
     event.preventDefault()
     closeMenu()
-    setActiveLink(href)
 
     if (location.pathname !== '/' || location.hash !== href) {
       navigate(`/${href}`)
