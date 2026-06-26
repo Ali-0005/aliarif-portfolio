@@ -30,6 +30,7 @@ import icmaLogo from '../../assets/icma_logo.png'
 import highlineLogo from '../../assets/highline_residential.png'
 import Navbar from '../Home/components/Navbar'
 import Footer from '../Home/components/Footer'
+import { trackBookCallClick, trackResumeDownload } from '../../shared/lib/analytics'
 
 const journeyItems = [
   {
@@ -239,6 +240,7 @@ function About() {
               <a
                 href={`${import.meta.env.BASE_URL}Ali-Arif-Python-Django-Backend-Developer-Resume.pdf`}
                 download="Ali-Arif-Python-Django-Backend-Developer-Resume.pdf"
+                onClick={trackResumeDownload}
                 className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-slate-950/60 px-6 py-3 text-sm font-semibold text-white transition hover:border-blue-300 hover:bg-white/5"
               >
                 Download Resume <FiDownload />
@@ -551,6 +553,7 @@ function About() {
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/#contact"
+                onClick={trackBookCallClick}
                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500"
               >
                 Discuss Your Project <FiArrowRight />

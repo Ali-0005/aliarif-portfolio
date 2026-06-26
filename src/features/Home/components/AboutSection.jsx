@@ -10,6 +10,7 @@ import { FaLinkedinIn } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { SiGooglescholar } from 'react-icons/si'
 import { profile } from '../../../data/profile'
+import { trackEmailClick, trackGitHubClick, trackLinkedInClick } from '../../../shared/lib/analytics'
 
 const profileItems = [
 
@@ -56,6 +57,12 @@ const profileItems = [
 ]
 
 function AboutSection() {
+  const profileClickHandlers = {
+    Email: trackEmailClick,
+    LinkedIn: trackLinkedInClick,
+    GitHub: trackGitHubClick,
+  }
+
   return (
     <section
       id="about"
@@ -125,6 +132,7 @@ function AboutSection() {
                           href={item.url}
                           target={item.url.startsWith('http') ? '_blank' : undefined}
                           rel={item.url.startsWith('http') ? 'noreferrer' : undefined}
+                          onClick={profileClickHandlers[item.label]}
                           className="mt-1 block text-base font-semibold text-white transition hover:text-blue-400"
                         >
                           {item.value}

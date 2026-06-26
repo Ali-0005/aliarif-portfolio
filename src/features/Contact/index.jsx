@@ -19,6 +19,12 @@ import Navbar from '../Home/components/Navbar'
 import Footer from '../Home/components/Footer'
 import { profile } from '../../data/profile'
 import contactCover from '../../assets/cover/contact_me.webp'
+import {
+  trackContactFormSubmit,
+  trackEmailClick,
+  trackGitHubClick,
+  trackLinkedInClick,
+} from '../../shared/lib/analytics'
 
 const inputClass =
   'min-h-12 w-full rounded-lg border border-slate-600/70 bg-[#06101d] px-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-blue-400'
@@ -134,7 +140,7 @@ function Contact() {
     setFormResult('')
 
     const formData = new FormData(event.target)
-    formData.append('access_key', '86650406-bbeb-42f0-b898-4b2cf319e6aa')
+    formData.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY)
     formData.append('subject', 'New Project Inquiry from Ali Arif Portfolio')
     formData.append('from_name', 'Ali Arif Portfolio')
 
@@ -146,6 +152,7 @@ function Contact() {
       const data = await response.json()
 
       if (data.success) {
+        trackContactFormSubmit()
         setFormResult('Your inquiry has been sent successfully.')
         event.target.reset()
       } else {
@@ -353,7 +360,7 @@ function Contact() {
                     <div>
                       <p className="text-sm text-slate-400">{label}</p>
                       {href ? (
-                        <a className="mt-1 block text-base text-white transition hover:text-blue-400" href={href}>
+                        <a className="mt-1 block text-base text-white transition hover:text-blue-400" href={href} onClick={trackEmailClick}>
                           {value}
                         </a>
                       ) : (
@@ -369,6 +376,7 @@ function Contact() {
                   href={profile.linkedinUrl}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={trackLinkedInClick}
                   className="inline-flex items-center gap-3 text-sm font-semibold text-white"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/5 text-2xl text-blue-400">
@@ -380,6 +388,7 @@ function Contact() {
                   href={profile.githubUrl}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={trackGitHubClick}
                   className="inline-flex items-center gap-3 text-sm font-semibold text-white"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-slate-600/60 bg-white/5 text-2xl text-slate-300">
@@ -496,13 +505,14 @@ function Contact() {
               <h2 className="text-2xl font-bold">Prefer Email?</h2>
               <p className="mt-3 text-slate-300">
                 Send your project overview directly to{' '}
-                <a className="font-semibold text-blue-400" href={`mailto:${profile.email}`}>
+                <a className="font-semibold text-blue-400" href={`mailto:${profile.email}`} onClick={trackEmailClick}>
                   {profile.email}
                 </a>
               </p>
             </div>
             <a
               href={`mailto:${profile.email}`}
+              onClick={trackEmailClick}
               className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg border border-slate-400/70 px-6 text-sm font-semibold text-white transition hover:border-blue-400"
             >
               Write an Email

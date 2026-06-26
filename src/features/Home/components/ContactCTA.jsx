@@ -1,5 +1,6 @@
 import { FiCalendar, FiMail } from 'react-icons/fi'
 import { profile } from '../../../data/profile'
+import { trackBookCallClick, trackEmailClick } from '../../../shared/lib/analytics'
 
 function ContactCTA() {
   return (
@@ -28,6 +29,7 @@ function ContactCTA() {
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-nowrap">
               <a
                 href={`mailto:${profile.email}`}
+                onClick={trackEmailClick}
                 className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg border border-blue-400/40 bg-[#142654]/80 px-6 text-base font-semibold text-white transition hover:bg-[#1a326e]"
               >
                 <FiMail className="text-xl" />
@@ -35,6 +37,7 @@ function ContactCTA() {
               </a>
               <a
                 href={`mailto:${profile.email}?subject=Schedule%20a%20Call`}
+                onClick={trackBookCallClick}
                 className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg border border-blue-300/20 bg-blue-600 px-7 text-base font-semibold text-white shadow-lg shadow-blue-950/25 transition hover:bg-blue-500"
               >
                 <FiCalendar className="text-xl" />

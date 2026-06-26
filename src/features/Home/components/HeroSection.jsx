@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fi'
 import { HiOutlineRocketLaunch, HiOutlineSparkles } from 'react-icons/hi2'
 import heroImg from '../../../assets/hero.png'
+import { trackBookCallClick, trackResumeDownload } from '../../../shared/lib/analytics'
 
 const stats = [
   // { value: '5+', label: 'Years Experience', icon: FiUser },
@@ -79,6 +80,7 @@ function HeroSection() {
 
             <a
               href="#contact"
+              onClick={trackBookCallClick}
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
               Let's Talk
@@ -88,6 +90,7 @@ function HeroSection() {
             <a
             href={`${import.meta.env.BASE_URL}Ali-Arif-Python-Django-Backend-Developer-Resume.pdf`}
             download="Ali-Arif-Python-Django-Backend-Developer-Resume.pdf"
+            onClick={trackResumeDownload}
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-transparent px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
             Download Resume

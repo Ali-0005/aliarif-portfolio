@@ -2,6 +2,7 @@ import { FiAward, FiGithub, FiMail, FiMapPin } from 'react-icons/fi'
 import { FaLinkedinIn } from 'react-icons/fa'
 import { profile } from '../../../data/profile'
 import logo from '../../../assets/removebg-preview.png'
+import { trackEmailClick, trackGitHubClick, trackLinkedInClick } from '../../../shared/lib/analytics'
 
 function Footer() {
   return (
@@ -30,6 +31,7 @@ function Footer() {
           <div className="grid gap-4 border-blue-400/15 md:grid-cols-4 md:border-l">
             <a
               href={`mailto:${profile.email}`}
+              onClick={trackEmailClick}
               className="flex items-center gap-3 md:border-r md:border-blue-400/15 md:px-6"
             >
               <FiMail className="text-2xl text-blue-400" />
@@ -39,6 +41,7 @@ function Footer() {
               href={profile.linkedinUrl}
               target="_blank"
               rel="noreferrer"
+              onClick={trackLinkedInClick}
               className="flex items-center gap-3 md:border-r md:border-blue-400/15 md:px-6"
             >
               <FaLinkedinIn className="text-2xl text-slate-300" />
@@ -48,6 +51,7 @@ function Footer() {
               href={profile.githubUrl}
               target="_blank"
               rel="noreferrer"
+              onClick={trackGitHubClick}
               className="flex items-center gap-3 md:border-r md:border-blue-400/15 md:px-6"
             >
               <FiGithub className="text-2xl text-slate-300" />

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './features/Home'
 import About from './features/About'
@@ -8,6 +8,7 @@ import SocifiyProject from './features/Projects/components/SocifiyProject'
 import OmnichannelProject from './features/Projects/components/OmnichannelProject'
 import RagProject from './features/Projects/components/RagProject'
 import BillingProject from './features/Projects/components/BillingProject'
+import { trackPageView } from './shared/lib/analytics'
 
 const pageMetadata = {
   '/': {
@@ -84,6 +85,24 @@ function PageMetadata() {
   return null
 }
 
+function AnalyticsPageView() {
+  const { pathname, search, hash } = useLocation()
+  const lastTrackedPath = useRef('')
+
+  useEffect(() => {
+    const path = `${pathname}${search}${hash}`
+
+    if (lastTrackedPath.current === path) {
+      return
+    }
+
+    lastTrackedPath.current = path
+    trackPageView(path)
+  }, [pathname, search, hash])
+
+  return null
+}
+
 function App() {
   const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -91,6 +110,7 @@ function App() {
     <BrowserRouter basename={basename}>
       <ScrollToTop />
       <PageMetadata />
+      <AnalyticsPageView />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

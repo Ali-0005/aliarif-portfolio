@@ -10,6 +10,7 @@ import {
   FiUsers,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import { trackBookCallClick } from '../../../shared/lib/analytics'
 
 const iconMap = {
   briefcase: FiBriefcase,
@@ -47,7 +48,7 @@ function ProjectLeftSidebar({
       <div className={`${cardClass} bg-gradient-to-br from-[#0b1424]/90 via-[#10245c]/80 to-purple-900/45 p-5`}>
         <p className="text-lg font-bold">{ctaTitle}</p>
         <p className="mt-4 text-sm leading-7 text-slate-300">{ctaText}</p>
-        <Link to="/#contact" className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-blue-600 px-4 py-4 text-sm font-semibold transition hover:bg-blue-500">
+        <Link to="/#contact" onClick={trackBookCallClick} className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-blue-600 px-4 py-4 text-sm font-semibold transition hover:bg-blue-500">
           {ctaLabel}
           <FiArrowRight />
         </Link>

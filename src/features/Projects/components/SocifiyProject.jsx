@@ -9,6 +9,7 @@ import architectureImage from '../../../assets/socifiy_architecture.png'
 import heroDemo from '../../../assets/socifiy-hero-demo.png'
 import heroDemoWebp from '../../../assets/socifiy-hero-demo.webp'
 import ProjectLeftSidebar from './ProjectLeftSidebar'
+import { trackBookCallClick } from '../../../shared/lib/analytics'
 
 const card = 'rounded-xl border border-white/10 bg-[#0b1424]/80'
 const sections = ['Overview', 'Business Challenge', 'What I Built', 'Key Contributions', 'Architecture', 'Outcome']
@@ -188,7 +189,7 @@ function SocifiyProject() {
                 </div>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Link to="/#contact" className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-7 py-4 text-sm font-semibold transition hover:bg-blue-500">Book a Discovery Call</Link>
+                <Link to="/#contact" onClick={trackBookCallClick} className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-7 py-4 text-sm font-semibold transition hover:bg-blue-500">Book a Discovery Call</Link>
                 <Link to="/#projects" className="inline-flex items-center justify-center gap-3 rounded-lg border border-white/20 bg-white/5 px-7 py-4 text-sm font-semibold transition hover:bg-white/10">View All Projects <FiArrowLeft className="rotate-180" /></Link>
               </div>
             </div>
