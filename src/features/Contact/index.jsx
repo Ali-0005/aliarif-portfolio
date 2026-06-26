@@ -18,7 +18,7 @@ import { FaLinkedinIn } from 'react-icons/fa'
 import Navbar from '../Home/components/Navbar'
 import Footer from '../Home/components/Footer'
 import { profile } from '../../data/profile'
-import contactCover from '../../assets/cover/contact_me.png'
+import contactCover from '../../assets/cover/contact_me.webp'
 
 const inputClass =
   'min-h-12 w-full rounded-lg border border-slate-600/70 bg-[#06101d] px-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-blue-400'
