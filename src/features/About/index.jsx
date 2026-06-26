@@ -12,16 +12,17 @@ import {
   FiMessageSquare,
   FiServer,
   FiShield,
-  FiStar,
   FiTrendingUp,
   FiUsers,
 } from 'react-icons/fi'
-import { FaAws, FaPython } from 'react-icons/fa'
+import { FaAward, FaAws, FaBookOpen, FaGraduationCap, FaMedal, FaPython, FaRegStar } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { SiDjango, SiOpenai, SiPostgresql, SiReact } from 'react-icons/si'
 import { profile } from '../../data/profile'
 import heroImg from '../../assets/hero.png'
 import ituLogo from '../../assets/Logo-ITU-NEW.png'
+import ucpLogo from '../../assets/UCP_logo.jfif'
+import ieeeLogo from '../../assets/ieee_logo.png'
 import rapidevLogo from '../../assets/rapidev.png'
 import governmentLogo from '../../assets/Government_of_pak.png'
 import selfEmployeeLogo from '../../assets/self_employee.jfif'
@@ -77,7 +78,7 @@ const journeyItems = [
   },
   {
     icon: FiTrendingUp,
-    role: 'Backend Software Engineer',
+    role: 'Backend & AI Systems Engineer',
     period: 'Jan 2026 - Present',
     logo: highlineLogo,
     link: 'https://www.hlres.com/',
@@ -143,28 +144,34 @@ const principles = [
 
 const beyondDevelopment = [
   {
-    icon: FiLayers,
+    logo: ituLogo,
     title: 'MS in Electronics & Computer Engineering',
-    text: 'Strong academic foundation in engineering, signal processing and research driven problem solving.',
+    period: '2016 - 2018',
+    link: 'https://itu.edu.pk/',
+    text: 'Completed M.Sc. in Electronics & Computer Engineering with GPA 3.60/4.00 and Grade A+.',
   },
   {
-    icon: FiFileText,
-    title: 'IEEE Publications',
-    text: 'Published research in reputed IEEE journals in antennas, sensors and biomedical engineering applications.',
+    logo: ucpLogo,
+    title: 'BS in Electrical Engineering',
+    period: '2012 - 2016',
+    link: 'https://ucp.edu.pk/',
+    text: 'Graduated with a strong engineering foundation, GPA 3.95/4.00 and Grade A+.',
   },
   {
-    icon: FiUsers,
-    title: 'Generative AI Instructor',
-    text: 'Delivered Gen-AI training and business productivity programs, helping learners build practical AI skills.',
+    logo: ieeeLogo,
+    title: 'IEEE Peer Reviewer',
+    period: 'Research Publications',
+    link: 'https://www.webofscience.com/wos/author/record/AAP-8982-2020',
+    text: 'Reviewed and published research across IEEE journals in antennas, sensors and biomedical engineering applications.',
   },
 ]
 
 const recognition = [
-  ['Gold Medal', 'For academic excellence'],
-  ["Dean's Honour List", 'Consistently recognized for outstanding performance'],
-  ['Graduate Fellowship', 'Awarded for academic merit and research potential'],
-  ['Best Final Year Project Medal', 'Dr. M. Nawaz Medal for excellence'],
-  ['IEEE Publications', 'Research contributions in engineering domains'],
+  { icon: FaMedal, color: 'text-amber-400', title: 'Gold Medal', text: 'For academic excellence in BSEE' },
+  { icon: FaRegStar, color: 'text-amber-400', title: "Dean's Honour List", text: 'Consistently recognized for outstanding academic performance in BSEE and MSEE' },
+  { icon: FaGraduationCap, color: 'text-blue-400', title: 'Graduate Fellowship', text: 'Awarded for academic merit and research potential in MSEE' },
+  { icon: FaAward, color: 'text-amber-400', title: 'Dr. M. Nawaz Medal', text: 'Awarded for best final year project in BSEE' },
+  { icon: FaBookOpen, color: 'text-blue-400', title: 'IEEE Publications', link: 'https://ieeexplore.ieee.org/author/37086825302', text: 'Research contributions in engineering domains' },
 ]
 
 const expertise = [
@@ -349,7 +356,20 @@ function About() {
                       </div>
                     )}
                     <div>
-                      <h3 className="font-semibold text-white">{item.role}</h3>
+                      <h3 className="font-semibold text-white">
+                        {item.link ? (
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="transition hover:text-blue-300"
+                          >
+                            {item.role}
+                          </a>
+                        ) : (
+                          item.role
+                        )}
+                      </h3>
                       <p className="mt-1 text-sm leading-6 text-slate-400">{item.description}</p>
                     </div>
                   </div>
@@ -417,13 +437,46 @@ function About() {
           />
           <div className="grid gap-4 lg:grid-cols-3">
             {beyondDevelopment.map((item) => {
-              const Icon = item.icon
-
               return (
                 <article key={item.title} className="flex gap-5 rounded-xl border border-blue-400/20 bg-[#07111f]/80 p-6">
-                  <Icon className="shrink-0 text-4xl text-blue-400" />
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex h-14 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white p-1 transition hover:ring-2 hover:ring-blue-300/60"
+                    >
+                      <img
+                        src={item.logo}
+                        alt={`${item.title} logo`}
+                        className="h-full w-full object-contain"
+                      />
+                    </a>
+                  ) : (
+                    <div className="flex h-14 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white p-1">
+                      <img
+                        src={item.logo}
+                        alt={`${item.title} logo`}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                  )}
                   <div>
-                    <h3 className="font-semibold text-white">{item.title}</h3>
+                    <h3 className="font-semibold text-white">
+                      {item.link ? (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="transition hover:text-blue-300"
+                        >
+                          {item.title}
+                        </a>
+                      ) : (
+                        item.title
+                      )}
+                    </h3>
+                    <p className="mt-1 text-sm font-semibold text-blue-400">{item.period}</p>
                     <p className="mt-2 text-sm leading-7 text-slate-400">{item.text}</p>
                   </div>
                 </article>
@@ -435,13 +488,30 @@ function About() {
         <section className="mt-8">
           <SectionTitle title="Recognition" />
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {recognition.map(([title, text]) => (
-              <article key={title} className="rounded-xl border border-blue-400/20 bg-[#07111f]/80 p-5">
-                <FiStar className="text-3xl text-amber-400" />
-                <h3 className="mt-3 text-sm font-semibold text-white">{title}</h3>
-                <p className="mt-2 text-xs leading-6 text-slate-400">{text}</p>
+            {recognition.map((item) => {
+              const Icon = item.icon
+
+              return (
+              <article key={item.title} className="rounded-xl border border-blue-400/20 bg-[#07111f]/80 p-5">
+                <Icon className={`text-3xl ${item.color}`} />
+                <h3 className="mt-3 text-sm font-semibold text-white">
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="transition hover:text-blue-300"
+                    >
+                      {item.title}
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
+                <p className="mt-2 text-xs leading-6 text-slate-400">{item.text}</p>
               </article>
-            ))}
+              )
+            })}
           </div>
         </section>
 
