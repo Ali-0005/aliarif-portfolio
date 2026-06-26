@@ -156,9 +156,12 @@ function AboutSection() {
             </div>
 
             <div className="flex shrink-0 items-center gap-3 self-end text-blue-300 lg:self-auto">
-              <div className="rounded-2xl border border-blue-400/20 bg-blue-500/10 p-4">
+              <Link
+                to="/about"
+                className="rounded-2xl border border-blue-400/20 bg-blue-500/10 p-4 transition hover:border-blue-300 hover:bg-blue-500/20"
+              >
                 <FiArrowUpRight className="text-3xl" />
-              </div>
+              </Link>
             </div>
           </div>
         </div>

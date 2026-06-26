@@ -61,32 +61,27 @@ function ProjectsSection() {
       className="bg-[#020817] px-5 pb-16 text-white lg:px-8 lg:pb-20"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="flex items-center justify-between gap-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-blue-400 sm:text-base">
-            Featured Projects
-          </p>
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 rounded-lg border border-blue-400/20 bg-blue-500/5 px-3 py-2 text-sm font-semibold text-blue-400 transition hover:bg-blue-500/10"
-          >
-            View All Projects
-            <FiArrowRight />
-          </a>
-        </div>
+        <p className="text-sm font-semibold uppercase tracking-[0.08em] text-blue-400 sm:text-base">
+          Projects
+        </p>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {projects.map((project) => {
+            const Card = project.href ? Link : 'a'
+            const cardProps = project.href ? { to: project.href } : { href: '#contact' }
+
             return (
-              <article
+              <Card
                 key={project.title}
-                className="flex overflow-hidden rounded-2xl border border-blue-400/20 bg-[#0b1424]/85 shadow-xl shadow-black/20"
+                {...cardProps}
+                className="group flex overflow-hidden rounded-2xl border border-blue-400/20 bg-[#0b1424]/85 shadow-xl shadow-black/20 transition hover:border-blue-300/60 hover:bg-[#0f1a2c]"
               >
                 <div className="flex w-full flex-col">
                   <div className="h-32 overflow-hidden bg-[#0f1a2c]">
                     <img
                       src={project.thumbnail}
                       alt={`${project.title} thumbnail`}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover transition group-hover:scale-105"
                     />
                   </div>
 
@@ -104,26 +99,13 @@ function ProjectsSection() {
                       {project.result}
                     </p>
 
-                    {project.href ? (
-                      <Link
-                        to={project.href}
-                        className="mt-auto inline-flex items-center gap-2 border-t border-white/5 pt-5 text-sm font-semibold text-blue-400"
-                      >
-                        Case Study
-                        <FiArrowRight />
-                      </Link>
-                    ) : (
-                      <a
-                      href="#contact"
-                      className="mt-auto inline-flex items-center gap-2 border-t border-white/5 pt-5 text-sm font-semibold text-blue-400"
-                    >
+                    <span className="mt-auto inline-flex items-center gap-2 border-t border-white/5 pt-5 text-sm font-semibold text-blue-400">
                       Case Study
                       <FiArrowRight />
-                    </a>
-                    )}
+                    </span>
                   </div>
                 </div>
-              </article>
+              </Card>
             )
           })}
         </div>
