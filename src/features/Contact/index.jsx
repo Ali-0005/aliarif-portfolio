@@ -118,12 +118,44 @@ function Contact() {
   const [openFaqs, setOpenFaqs] = useState(() =>
     faqs.reduce((items, faq) => ({ ...items, [faq.question]: Boolean(faq.open) }), {}),
   )
+  const [formResult, setFormResult] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const toggleFaq = (question) => {
     setOpenFaqs((current) => ({
       ...current,
       [question]: !current[question],
     }))
+  }
+
+  const onSubmit = async (event) => {
+    event.preventDefault()
+    setIsSubmitting(true)
+    setFormResult('')
+
+    const formData = new FormData(event.target)
+    formData.append('access_key', '86650406-bbeb-42f0-b898-4b2cf319e6aa')
+    formData.append('subject', 'New Project Inquiry from Ali Arif Portfolio')
+    formData.append('from_name', 'Ali Arif Portfolio')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await response.json()
+
+      if (data.success) {
+        setFormResult('Your inquiry has been sent successfully.')
+        event.target.reset()
+      } else {
+        setFormResult('Something went wrong. Please try again or email me directly.')
+      }
+    } catch {
+      setFormResult('Something went wrong. Please try again or email me directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -159,7 +191,10 @@ function Contact() {
 
       <section className="px-5 pb-8 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[1.15fr_0.75fr] lg:items-start">
-          <form className="rounded-lg border border-blue-400/20 bg-[#07111f]/70 p-6 shadow-2xl shadow-black/30">
+          <form
+            onSubmit={onSubmit}
+            className="rounded-lg border border-blue-400/20 bg-[#07111f]/70 p-6 shadow-2xl shadow-black/30"
+          >
             <h2 className="text-2xl font-bold">Start a Conversation</h2>
             <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300">
               Share a few details about your project. I&apos;ll review the
@@ -171,7 +206,12 @@ function Contact() {
                 Full Name
                 <span className="relative">
                   <FiUsers className="absolute left-4 top-1/2 -translate-y-1/2 text-lg text-slate-400" />
-                  <input className={`${inputClass} pl-12`} placeholder="Your full name" />
+                  <input
+                    className={`${inputClass} pl-12`}
+                    name="name"
+                    placeholder="Your full name"
+                    required
+                  />
                 </span>
               </label>
 
@@ -179,7 +219,13 @@ function Contact() {
                 Work Email
                 <span className="relative">
                   <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-lg text-slate-400" />
-                  <input className={`${inputClass} pl-12`} placeholder="you@company.com" />
+                  <input
+                    className={`${inputClass} pl-12`}
+                    name="email"
+                    type="email"
+                    placeholder="you@company.com"
+                    required
+                  />
                 </span>
               </label>
 
@@ -187,7 +233,11 @@ function Contact() {
                 Company / Organization <span className="text-slate-400">(Optional)</span>
                 <span className="relative">
                   <FiBox className="absolute left-4 top-1/2 -translate-y-1/2 text-lg text-slate-400" />
-                  <input className={`${inputClass} pl-12`} placeholder="Your company or organization" />
+                  <input
+                    className={`${inputClass} pl-12`}
+                    name="company"
+                    placeholder="Your company or organization"
+                  />
                 </span>
               </label>
 
@@ -195,8 +245,12 @@ function Contact() {
                 <label className="grid gap-2 text-sm font-medium">
                   Project Type
                   <span className="relative">
-                    <select className={`${inputClass} appearance-none text-slate-400`}>
-                      <option>Select project type</option>
+                    <select
+                      className={`${inputClass} appearance-none text-slate-400`}
+                      name="project_type"
+                      required
+                    >
+                      <option value="">Select project type</option>
                       {projectTypes.map((type) => (
                         <option key={type}>{type}</option>
                       ))}
@@ -208,8 +262,11 @@ function Contact() {
                 <label className="grid gap-2 text-sm font-medium">
                   Estimated Budget
                   <span className="relative">
-                    <select className={`${inputClass} appearance-none text-slate-400`}>
-                      <option>Select budget range</option>
+                    <select
+                      className={`${inputClass} appearance-none text-slate-400`}
+                      name="estimated_budget"
+                    >
+                      <option value="">Select budget range</option>
                       {budgets.map((budget) => (
                         <option key={budget}>{budget}</option>
                       ))}
@@ -222,8 +279,12 @@ function Contact() {
               <label className="grid gap-2 text-sm font-medium">
                 Project Timeline
                 <span className="relative">
-                  <select className={`${inputClass} appearance-none text-slate-400`}>
-                    <option>Select timeline</option>
+                  <select
+                    className={`${inputClass} appearance-none text-slate-400`}
+                    name="project_timeline"
+                    required
+                  >
+                    <option value="">Select timeline</option>
                     {timelines.map((timeline) => (
                       <option key={timeline}>{timeline}</option>
                     ))}
@@ -236,27 +297,37 @@ function Contact() {
                 Project Details
                 <textarea
                   className={`${inputClass} min-h-32 resize-y py-4 leading-6`}
+                  name="message"
                   placeholder="Tell me about your project, goals, challenges, features you need, and any other details that will help me understand your requirements..."
+                  required
                 />
               </label>
 
               <label className="flex items-start gap-3 text-sm text-slate-300">
                 <input
                   type="checkbox"
+                  name="email_consent"
+                  value="Yes"
                   defaultChecked
+                  required
                   className="mt-1 h-4 w-4 accent-blue-500"
                 />
                 I&apos;m comfortable sharing project details by email.
               </label>
 
               <button
-                type="button"
-                className="inline-flex min-h-14 items-center justify-center gap-4 rounded-lg bg-blue-600 px-6 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500"
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex min-h-14 items-center justify-center gap-4 rounded-lg bg-blue-600 px-6 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 <FiSend className="text-2xl" />
-                Send Project Inquiry
+                {isSubmitting ? 'Sending...' : 'Send Project Inquiry'}
                 <FiArrowRight className="text-2xl" />
               </button>
+
+              {formResult && (
+                <p className="text-center text-sm font-medium text-blue-300">{formResult}</p>
+              )}
 
               <p className="flex items-center justify-center gap-2 text-xs text-slate-500">
                 <FiLock />
