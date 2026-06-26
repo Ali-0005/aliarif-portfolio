@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   FiArrowRight,
   FiBox,
@@ -27,6 +28,7 @@ const projectTypes = [
   'AI or RAG system',
   'Backend API',
   'Automation workflow',
+  'Other',
 ]
 
 const budgets = ['$1k - $3k', '$3k - $7k', '$7k - $15k', '$15k+']
@@ -65,20 +67,38 @@ const faqs = [
   {
     question: 'What types of projects do you take on?',
     answer:
-      'I focus on backend systems, SaaS platforms, AI and RAG applications, automation workflows, API integrations, cloud deployment, and performance improvements.',
+      'I specialize in backend systems, AI-powered applications, SaaS platforms, workflow automation, and third-party integrations. My work includes scalable Django backends, REST APIs, RAG and LLM-based solutions, cloud deployments on AWS, Stripe billing, and integrations with platforms such as Meta, Slack, Zapier, and HubSpot.',
     open: true,
   },
   {
     question: 'Can you work with an existing codebase?',
-    answer: '',
+    answer:
+      "Yes. A significant part of my work involves enhancing and maintaining production systems. I can understand existing architectures, optimize performance, add new features, resolve technical debt, and implement AI or automation capabilities while following your project's coding standards and development workflow.",
   },
   {
     question: 'Do you offer ongoing support?',
-    answer: '',
+    answer:
+      "Yes. After delivery, I can continue supporting the project through feature development, maintenance, performance optimization, bug fixes, infrastructure improvements, and technical consulting. Support arrangements can be tailored to your needs, whether it's occasional assistance or an ongoing part-time engagement.",
   },
   {
     question: 'Can you sign an NDA?',
-    answer: '',
+    answer:
+      "Absolutely. I understand the importance of protecting intellectual property and confidential business information. I'm comfortable signing Non-Disclosure Agreements (NDAs) before discussing project details or starting development.",
+  },
+  {
+    question: 'What technologies do you primarily work with?',
+    answer:
+      'My primary stack includes Python, Django, Django REST Framework, PostgreSQL, React, AWS, Celery, Redis, Docker, and OpenAI technologies. I also have experience with PostGIS, Stripe, Meta APIs, Slack, Zapier, HubSpot, OAuth, vector databases, and Retrieval-Augmented Generation (RAG) systems.',
+  },
+  {
+    question: 'Are you available for freelance or contract work?',
+    answer:
+      "Yes. I'm currently open to freelance projects, part-time contracts, and long-term remote collaborations. If your project aligns with my expertise and availability, I'd be happy to discuss the requirements and propose the most practical technical approach.",
+  },
+  {
+    question: 'How quickly do you respond?',
+    answer:
+      'I usually respond to new project inquiries within 1-2 business days. For urgent opportunities, feel free to mention the timeline in your message so I can prioritize the discussion accordingly.',
   },
 ]
 
@@ -95,6 +115,17 @@ function ContactGraphic() {
 }
 
 function Contact() {
+  const [openFaqs, setOpenFaqs] = useState(() =>
+    faqs.reduce((items, faq) => ({ ...items, [faq.question]: Boolean(faq.open) }), {}),
+  )
+
+  const toggleFaq = (question) => {
+    setOpenFaqs((current) => ({
+      ...current,
+      [question]: !current[question],
+    }))
+  }
+
   return (
     <main className="min-h-screen bg-[#020817] text-white">
       <Navbar />
@@ -117,7 +148,7 @@ function Contact() {
               </p>
               <div className="mt-7 inline-flex items-center gap-3 rounded-full border border-green-500/35 bg-green-500/5 px-5 py-3 text-sm font-semibold text-green-400">
                 <span className="h-3 w-3 rounded-full bg-green-400 shadow-[0_0_12px_rgba(34,197,94,0.8)]" />
-                Available for selected freelance and contract projects
+                Available for freelance and contract projects
               </div>
             </div>
 
@@ -127,7 +158,7 @@ function Contact() {
       </section>
 
       <section className="px-5 pb-8 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[1.15fr_0.75fr]">
+        <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[1.15fr_0.75fr] lg:items-start">
           <form className="rounded-lg border border-blue-400/20 bg-[#07111f]/70 p-6 shadow-2xl shadow-black/30">
             <h2 className="text-2xl font-bold">Start a Conversation</h2>
             <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300">
@@ -239,18 +270,24 @@ function Contact() {
               <h2 className="text-2xl font-bold">Direct Contact</h2>
               <div className="mt-6 grid gap-5">
                 {[
-                  [FiMail, 'Email', profile.email],
+                  [FiMail, 'Email', profile.email, `mailto:${profile.email}`],
                   [FiMapPin, 'Location', profile.location],
                   [FiCheckCircle, 'Availability', profile.availability],
-                  [FiClockIcon, 'Response Time', 'Usually within 1-2 business days'],
-                ].map(([Icon, label, value]) => (
+                  [FiClockIcon, 'Response Time', 'Usually within 1 business day'],
+                ].map(([Icon, label, value, href]) => (
                   <div key={label} className="flex gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-blue-500/30 bg-blue-500/5 text-2xl text-blue-400">
                       <Icon />
                     </div>
                     <div>
                       <p className="text-sm text-slate-400">{label}</p>
-                      <p className="mt-1 text-base text-white">{value}</p>
+                      {href ? (
+                        <a className="mt-1 block text-base text-white transition hover:text-blue-400" href={href}>
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="mt-1 text-base text-white">{value}</p>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -311,11 +348,13 @@ function Contact() {
                 {index < steps.length - 1 && (
                   <FiArrowRight className="absolute -right-5 top-1/2 hidden -translate-y-1/2 text-3xl text-blue-400 lg:block" />
                 )}
-                <div className="flex gap-6">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-blue-500 text-xl font-semibold text-blue-400">
-                    {step.number}
+                <div className="grid items-center gap-6 sm:grid-cols-[auto_1fr]">
+                  <div className="flex flex-col items-center">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-blue-500 text-xl font-semibold text-blue-400">
+                      {step.number}
+                    </div>
+                    <step.icon className="mt-5 shrink-0 text-5xl text-blue-400" />
                   </div>
-                  <step.icon className="mt-10 shrink-0 text-5xl text-blue-400" />
                   <div>
                     <h3 className="font-bold">{step.title}</h3>
                     <p className="mt-4 text-sm leading-6 text-slate-400">{step.text}</p>
@@ -345,22 +384,33 @@ function Contact() {
         <div className="mx-auto max-w-7xl">
           <h2 className="text-2xl font-bold">Common Questions</h2>
           <div className="mt-5 overflow-hidden rounded-lg border border-blue-400/20 bg-[#07111f]/70">
-            {faqs.map((faq) => (
+            {faqs.map((faq) => {
+              const isOpen = openFaqs[faq.question]
+
+              return (
               <div key={faq.question} className="border-b border-blue-400/10 last:border-b-0">
-                <div className="flex items-start gap-5 px-7 py-5">
+                <button
+                  type="button"
+                  onClick={() => toggleFaq(faq.question)}
+                  className="flex w-full items-start gap-5 px-7 py-5 text-left"
+                  aria-expanded={isOpen}
+                >
                   <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-500 text-slate-300">
-                    {faq.open ? <FiMinus /> : <FiPlus />}
+                    {isOpen ? <FiMinus /> : <FiPlus />}
                   </span>
                   <div className="flex-1">
                     <h3 className="font-semibold">{faq.question}</h3>
-                    {faq.open && (
+                    {isOpen && (
                       <p className="mt-3 text-sm leading-6 text-slate-300">{faq.answer}</p>
                     )}
                   </div>
-                  <FiChevronDown className="mt-1 text-slate-300" />
-                </div>
+                  <FiChevronDown
+                    className={`mt-1 text-slate-300 transition ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
