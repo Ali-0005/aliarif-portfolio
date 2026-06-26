@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './features/Home'
 import About from './features/About'
+import Contact from './features/Contact'
 import RealEstateProject from './features/Projects'
 import SocifiyProject from './features/Projects/components/SocifiyProject'
 import OmnichannelProject from './features/Projects/components/OmnichannelProject'
@@ -18,6 +19,11 @@ const pageMetadata = {
     title: 'About Ali Arif | Backend & AI Systems Engineer',
     description:
       'About Ali Arif, a Backend & AI Systems Engineer building scalable SaaS platforms, AI systems, automation workflows, APIs, and cloud-ready software.',
+  },
+  '/contact': {
+    title: 'Contact Me | Ali Arif | Backend & AI Systems Engineer',
+    description:
+      'Contact Ali Arif for Django backend systems, SaaS platforms, AI and RAG applications, automation workflows, API integrations, and cloud deployment.',
   },
   '/projects/django-real-estate-platform': {
     title: 'Django Real Estate Platform | Python Case Study | Ali Arif',
@@ -88,6 +94,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/projects/django-real-estate-platform" element={<RealEstateProject />} />
         <Route path="/projects/social-media-management-platform" element={<SocifiyProject />} />
         <Route path="/projects/omnichannel-ai-chatbot-platform" element={<OmnichannelProject />} />

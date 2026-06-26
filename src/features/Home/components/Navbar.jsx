@@ -9,14 +9,14 @@ const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact Me', href: '/contact' },
 ]
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const activeLink = location.hash || '#home'
+  const activeLink = location.pathname === '/contact' ? '/contact' : location.hash || '#home'
 
   const closeMenu = () => setIsOpen(false)
 
@@ -29,6 +29,11 @@ function Navbar() {
   const handleNavigation = (event, href) => {
     event.preventDefault()
     closeMenu()
+
+    if (href.startsWith('/')) {
+      navigate(href)
+      return
+    }
 
     if (location.pathname !== '/' || location.hash !== href) {
       navigate(`/${href}`)
@@ -70,7 +75,7 @@ function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={`/${link.href}`}
+              href={link.href.startsWith('/') ? link.href : `/${link.href}`}
               onClick={(event) => handleNavigation(event, link.href)}
               className={`relative text-sm font-medium transition-colors hover:text-blue-400 ${
                 activeLink === link.href ? 'text-blue-400' : 'text-slate-200'
@@ -109,7 +114,7 @@ function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={`/${link.href}`}
+                href={link.href.startsWith('/') ? link.href : `/${link.href}`}
                 onClick={(event) => handleNavigation(event, link.href)}
                 className={`rounded-lg px-4 py-3 text-sm font-medium transition hover:bg-white/5 ${
                   activeLink === link.href
