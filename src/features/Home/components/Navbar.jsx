@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { FiCalendar, FiMenu, FiX } from 'react-icons/fi'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 // import logo from '../../../assets/header_footer_logo.png'
 import logo from '../../../assets/removebg-preview.png'
 
 
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
+  { label: 'About', href: '/about' },
   { label: 'Projects', href: '#projects' },
   { label: 'Contact Me', href: '/contact' },
 ]
@@ -16,7 +16,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const activeLink = location.pathname === '/contact' ? '/contact' : location.hash || '#home'
+  const activeLink = location.pathname === '/' ? location.hash || '#home' : location.pathname
 
   const closeMenu = () => setIsOpen(false)
 
@@ -72,11 +72,20 @@ function Navbar() {
         </a>
 
         <div className="hidden items-center gap-9 lg:flex">
-          {navLinks.map((link) => (
-            <a
+          {navLinks.map((link) => {
+            const NavigationLink = link.href.startsWith('/') ? Link : 'a'
+
+            return (
+            <NavigationLink
               key={link.href}
-              href={link.href.startsWith('/') ? link.href : `/${link.href}`}
-              onClick={(event) => handleNavigation(event, link.href)}
+              {...(link.href.startsWith('/')
+                ? { to: link.href }
+                : { href: `/${link.href}` })}
+              onClick={(event) =>
+                link.href.startsWith('/')
+                  ? closeMenu()
+                  : handleNavigation(event, link.href)
+              }
               className={`relative text-sm font-medium transition-colors hover:text-blue-400 ${
                 activeLink === link.href ? 'text-blue-400' : 'text-slate-200'
               }`}
@@ -85,8 +94,9 @@ function Navbar() {
               {activeLink === link.href && (
                 <span className="absolute -bottom-3 left-0 h-0.5 w-full rounded-full bg-blue-500" />
               )}
-            </a>
-          ))}
+            </NavigationLink>
+            )
+          })}
         </div>
 
         <a
@@ -111,11 +121,20 @@ function Navbar() {
       {isOpen && (
         <div className="border-t border-white/10 bg-[#020817]/95 px-5 py-5 lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-2">
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link) => {
+              const NavigationLink = link.href.startsWith('/') ? Link : 'a'
+
+              return (
+              <NavigationLink
                 key={link.href}
-                href={link.href.startsWith('/') ? link.href : `/${link.href}`}
-                onClick={(event) => handleNavigation(event, link.href)}
+                {...(link.href.startsWith('/')
+                  ? { to: link.href }
+                  : { href: `/${link.href}` })}
+                onClick={(event) =>
+                  link.href.startsWith('/')
+                    ? closeMenu()
+                    : handleNavigation(event, link.href)
+                }
                 className={`rounded-lg px-4 py-3 text-sm font-medium transition hover:bg-white/5 ${
                   activeLink === link.href
                     ? 'bg-blue-500/10 text-blue-400'
@@ -123,8 +142,9 @@ function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
-            ))}
+              </NavigationLink>
+              )
+            })}
 
             <a
               href="#contact"
