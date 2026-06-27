@@ -9,11 +9,9 @@ import {
   FiArrowRight,
   FiCode,
   FiDownload,
-  FiGlobe,
   FiMessageCircle,
-  FiUser,
 } from 'react-icons/fi'
-import { HiOutlineRocketLaunch, HiOutlineSparkles } from 'react-icons/hi2'
+import { HiOutlineSparkles } from 'react-icons/hi2'
 import heroImg from '../../../assets/hero.png'
 import { trackBookCallClick, trackResumeDownload } from '../../../shared/lib/analytics'
 
