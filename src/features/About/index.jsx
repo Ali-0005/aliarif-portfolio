@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom'
 import { SiDjango, SiOpenai, SiPostgresql, SiReact } from 'react-icons/si'
 import { profile } from '../../data/profile'
 import heroImg from '../../assets/hero.png'
+import heroImgWebp from '../../assets/hero.webp'
 import ituLogo from '../../assets/Logo-ITU-NEW.png'
 import ucpLogo from '../../assets/UCP_logo.jfif'
 import ieeeLogo from '../../assets/ieee_logo.png'
@@ -257,11 +258,15 @@ function About() {
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 via-transparent to-indigo-600/20" />
 
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#07111f]">
-                <img
-                  src={heroImg}
-                  alt="Ali Arif - Backend and AI Systems Engineer"
-                  className="h-auto w-full object-cover"
-                />
+                <picture>
+                  <source srcSet={heroImgWebp} type="image/webp" />
+                  <img
+                    src={heroImg}
+                    alt="Ali Arif - Backend and AI Systems Engineer"
+                    className="h-auto w-full object-cover"
+                    decoding="async"
+                  />
+                </picture>
               </div>
 
             {techBadges.map((badge) => {
