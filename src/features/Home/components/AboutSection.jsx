@@ -98,7 +98,7 @@ function AboutSection() {
             </div>
 
             <Link
-              to="/about"
+              to="/about/"
               className="mt-8 inline-flex items-center gap-3 rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
               More About Me
@@ -165,7 +165,7 @@ function AboutSection() {
 
             <div className="flex shrink-0 items-center gap-3 self-end text-blue-300 lg:self-auto">
               <Link
-                to="/about"
+                to="/about/"
                 className="rounded-2xl border border-blue-400/20 bg-blue-500/10 p-4 transition hover:border-blue-300 hover:bg-blue-500/20"
               >
                 <FiArrowUpRight className="text-3xl" />

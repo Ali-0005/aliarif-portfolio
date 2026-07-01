@@ -1,22 +1,101 @@
 import { useEffect, useState } from 'react'
 import { FiCalendar, FiMenu, FiX } from 'react-icons/fi'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import {
+  getCanonicalUrl,
+  getStructuredData,
+  normalizePagePath,
+  pageMetadata,
+  site,
+} from '../../../data/profile'
 // import logo from '../../../assets/header_footer_logo.png'
 import logo from '../../../assets/removebg-preview.png'
 
 
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'About', href: '/about' },
+  { label: 'About', href: '/about/' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Contact Me', href: '/contact' },
+  { label: 'Contact Me', href: '/contact/' },
 ]
+
+function updateMetaTag(selector, attributes) {
+  let element = document.head.querySelector(selector)
+
+  if (!element) {
+    element = document.createElement('meta')
+    document.head.appendChild(element)
+  }
+
+  Object.entries(attributes).forEach(([name, value]) => element.setAttribute(name, value))
+}
+
+function SeoMetadata({ pathname }) {
+  useEffect(() => {
+    const path = normalizePagePath(pathname)
+    const metadata = pageMetadata[path] ?? pageMetadata['/']
+    const canonicalUrl = getCanonicalUrl(path)
+    let canonical = document.head.querySelector('link[rel="canonical"]')
+    let structuredData = document.head.querySelector('#structured-data')
+
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.setAttribute('rel', 'canonical')
+      document.head.appendChild(canonical)
+    }
+
+    if (!structuredData) {
+      structuredData = document.createElement('script')
+      structuredData.id = 'structured-data'
+      structuredData.type = 'application/ld+json'
+      document.head.appendChild(structuredData)
+    }
+
+    document.title = metadata.title
+    canonical.setAttribute('href', canonicalUrl)
+    updateMetaTag('meta[name="description"]', {
+      name: 'description',
+      content: metadata.description,
+    })
+    updateMetaTag('meta[name="robots"]', {
+      name: 'robots',
+      content: 'index, follow, max-image-preview:large',
+    })
+    updateMetaTag('meta[property="og:title"]', {
+      property: 'og:title',
+      content: metadata.title,
+    })
+    updateMetaTag('meta[property="og:description"]', {
+      property: 'og:description',
+      content: metadata.description,
+    })
+    updateMetaTag('meta[property="og:type"]', {
+      property: 'og:type',
+      content: path.startsWith('/projects/') ? 'article' : 'website',
+    })
+    updateMetaTag('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl })
+    updateMetaTag('meta[property="og:image"]', { property: 'og:image', content: site.image })
+    updateMetaTag('meta[name="twitter:title"]', {
+      name: 'twitter:title',
+      content: metadata.title,
+    })
+    updateMetaTag('meta[name="twitter:description"]', {
+      name: 'twitter:description',
+      content: metadata.description,
+    })
+    updateMetaTag('meta[name="twitter:image"]', { name: 'twitter:image', content: site.image })
+    structuredData.textContent = JSON.stringify(getStructuredData(path))
+  }, [pathname])
+
+  return null
+}
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const activeLink = location.pathname === '/' ? location.hash || '#home' : location.pathname
+  const homeUrl = import.meta.env.BASE_URL
 
   const closeMenu = () => setIsOpen(false)
 
@@ -45,13 +124,15 @@ function Navbar() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#020817]/85 backdrop-blur-xl">
+    <>
+      <SeoMetadata pathname={location.pathname} />
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#020817]/85 backdrop-blur-xl">
       <nav
         aria-label="Main navigation"
         className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
       >
         <a
-          href="/#home"
+          href={`${homeUrl}#home`}
           className="flex items-center gap-3"
           onClick={(event) => handleNavigation(event, '#home')}
         >
@@ -80,7 +161,7 @@ function Navbar() {
               key={link.href}
               {...(link.href.startsWith('/')
                 ? { to: link.href }
-                : { href: `/${link.href}` })}
+                : { href: `${homeUrl}${link.href}` })}
               onClick={(event) =>
                 link.href.startsWith('/')
                   ? closeMenu()
@@ -100,7 +181,8 @@ function Navbar() {
         </div>
 
         <a
-          href="#contact"
+          href={`${homeUrl}#contact`}
+          onClick={(event) => handleNavigation(event, '#contact')}
           className="hidden items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500 lg:inline-flex"
         >
           <FiCalendar className="text-base" />
@@ -129,7 +211,7 @@ function Navbar() {
                 key={link.href}
                 {...(link.href.startsWith('/')
                   ? { to: link.href }
-                  : { href: `/${link.href}` })}
+                  : { href: `${homeUrl}${link.href}` })}
                 onClick={(event) =>
                   link.href.startsWith('/')
                     ? closeMenu()
@@ -147,8 +229,8 @@ function Navbar() {
             })}
 
             <a
-              href="#contact"
-              onClick={closeMenu}
+              href={`${homeUrl}#contact`}
+              onClick={(event) => handleNavigation(event, '#contact')}
               className="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-500"
             >
               <FiCalendar className="text-base" />
@@ -157,7 +239,8 @@ function Navbar() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+    </>
   )
 }
 
