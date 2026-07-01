@@ -242,7 +242,7 @@ function About() {
                 href={`${import.meta.env.BASE_URL}Ali-Arif-Python-Django-Backend-Developer-Resume.pdf`}
                 download="Ali-Arif-Python-Django-Backend-Developer-Resume.pdf"
                 onClick={trackResumeDownload}
-                className="inline-flex items-center gap-2 rounded-lg border border-blue-400/40 bg-slate-950/60 px-6 py-3 text-sm font-semibold text-white transition hover:border-blue-300 hover:bg-white/5"
+                className="hidden items-center gap-2 rounded-lg border border-blue-400/40 bg-slate-950/60 px-6 py-3 text-sm font-semibold text-white transition hover:border-blue-300 hover:bg-white/5"
               >
                 Download Resume <FiDownload />
               </a>
