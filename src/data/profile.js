@@ -141,6 +141,9 @@ export function getStructuredData(pathname) {
         description: metadata.description,
         isPartOf: { '@id': `${site.url}/#website` },
         about: { '@id': `${site.url}/#person` },
+        ...(metadata.schemaType === 'ProfilePage'
+          ? { mainEntity: { '@id': `${site.url}/#person` } }
+          : {}),
         inLanguage: 'en',
       },
     ],
